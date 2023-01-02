@@ -21,7 +21,7 @@ export default class Pixi {
   }
 
   resize() {
-    this.renderer.resize(window.innerWidth, this.inner);
+    this.renderer.resize(window.innerWidth, this.innerHeight);
   }
 
   initGame() {
