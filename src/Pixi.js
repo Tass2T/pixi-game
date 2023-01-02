@@ -1,20 +1,31 @@
 import { Application } from "pixi.js";
+import Game from "./Game";
 
-export default class Game {
+export default class Pixi {
   constructor() {
-    this.init();
-  }
-
-  init() {
     const gameArea = document.querySelector("#app");
     this.app = new Application({
-      width: window.innerWidth,
-      height: window.innerHeight,
+      autoResize: true,
+      resolution: devicePixelRatio,
       backgroundColor: 0x000000,
     });
-    this.scene = this.app.stage;
     this.renderer = this.app.renderer;
     gameArea.appendChild(this.app.view);
+
+    this.setPixiEvents();
+    this.initGame();
+  }
+
+  setPixiEvents() {
+    window.addEventListener("resize", this.resize);
+  }
+
+  resize() {
+    this.renderer.resize(window.innerWidth, this.inner);
+  }
+
+  initGame() {
+    this.game = new Game(this.app.stage);
   }
 
   render() {}
