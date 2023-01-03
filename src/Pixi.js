@@ -22,7 +22,7 @@ export default class Pixi {
   }
 
   init() {
-    this.game = new Game();
+    this.game = new Game(this.scene);
   }
 
   update() {
