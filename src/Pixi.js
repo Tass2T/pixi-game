@@ -9,26 +9,25 @@ export default class Pixi {
       resolution: devicePixelRatio,
       backgroundColor: 0x000000,
     });
-    this.renderer = this.app.renderer;
+    this.scene = this.app.stage;
     gameArea.appendChild(this.app.view);
 
-    this.setPixiEvents();
-    this.initGame();
+    this.init();
+    let elapsed = 0.0;
+    this.app.ticker.maxFPS = 60;
+    this.app.ticker.add((delta) => {
+      elapsed += delta;
+      this.update();
+    });
   }
 
-  setPixiEvents() {
-    window.addEventListener("resize", this.resize);
+  init() {
+    this.game = new Game();
   }
 
-  resize() {
-    this.renderer.resize(window.innerWidth, this.innerHeight);
+  update() {
+    this.game.update();
   }
-
-  initGame() {
-    this.game = new Game(this.app.stage);
-  }
-
-  render() {}
 
   dispose() {}
 }
