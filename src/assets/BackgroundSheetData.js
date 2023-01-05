@@ -7,7 +7,7 @@ export default {
     },
     ground: {
       frame: { x: 132, y: 384, w: 54, h: 32 },
-      sourceSize: { w: 32, h: 32 },
+      sourceSize: { w: 42, h: 32 },
       spriteSourceSize: { x: 0, y: 0, w: 54, h: 32 },
     },
   },

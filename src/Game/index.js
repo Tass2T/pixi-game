@@ -1,10 +1,18 @@
-import { Spritesheet, BaseTexture, Sprite, TilingSprite } from "pixi.js";
+import {
+  Spritesheet,
+  BaseTexture,
+  Sprite,
+  TilingSprite,
+  AnimatedSprite,
+} from "pixi.js";
 import BackgroundSheetData from "../assets/BackgroundSheetData";
+import PlayerSpriteData from "../assets/PlayerSpriteData";
 
 export default class Game {
   constructor(scene) {
     this.scene = scene;
     this.prepareBackground();
+    this.prepareCharacter();
   }
 
   async prepareBackground() {
@@ -15,10 +23,27 @@ export default class Game {
     await this.backgroundSpriteSheet.parse();
     const ground = new TilingSprite(
       this.backgroundSpriteSheet.textures.ground,
-      800,
-      600
+      760,
+      420
     );
     this.scene.addChild(ground);
+  }
+
+  async prepareCharacter() {
+    this.playerSpriteSheet = new Spritesheet(
+      BaseTexture.from(PlayerSpriteData.meta.image),
+      PlayerSpriteData
+    );
+    await this.playerSpriteSheet.parse();
+
+    this.playerTexture = new AnimatedSprite(
+      this.playerSpriteSheet.animations.down
+    );
+
+    this.playerTexture.animationSpeed = 0.08;
+    this.playerTexture.play();
+
+    this.scene.addChild(this.playerTexture);
   }
 
   update() {}
