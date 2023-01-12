@@ -23,7 +23,9 @@ export default class Game {
     this.scene.addChild(ground);
   }
 
-  update() {}
+  update() {
+    this.player.update();
+  }
 
   dispose() {}
 }
