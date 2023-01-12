@@ -1,5 +1,6 @@
 export default class Character {
-  constructor() {
-    this.direction = "DOWN";
+  constructor(scene) {
+    this.scene = scene;
+    this.direction = "down";
   }
 }
