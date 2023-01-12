@@ -1,7 +1,6 @@
 import {
   Spritesheet,
   BaseTexture,
-  Sprite,
   TilingSprite,
   AnimatedSprite,
 } from "pixi.js";
@@ -37,7 +36,7 @@ export default class Game {
     await this.playerSpriteSheet.parse();
 
     this.playerTexture = new AnimatedSprite(
-      this.playerSpriteSheet.animations.down
+      this.playerSpriteSheet.animations.up
     );
 
     this.playerTexture.animationSpeed = 0.08;
