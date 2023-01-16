@@ -1,12 +1,6 @@
 import Character from "./Character";
 import PlayerSpriteData from "../../assets/PlayerSpriteData.js";
-import {
-  AnimatedSprite,
-  Spritesheet,
-  BaseTexture,
-  Sprite,
-  Texture,
-} from "pixi.js";
+import { AnimatedSprite, Spritesheet, BaseTexture } from "pixi.js";
 import {
   DEFAULT_FRAME,
   ANIMATION_SPEED,
