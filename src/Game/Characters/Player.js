@@ -1,11 +1,18 @@
 import Character from "./Character";
 import PlayerSpriteData from "../../assets/PlayerSpriteData.js";
-import { AnimatedSprite, Spritesheet, BaseTexture } from "pixi.js";
+import {
+  AnimatedSprite,
+  Spritesheet,
+  BaseTexture,
+  Sprite,
+  Texture,
+} from "pixi.js";
 import {
   DEFAULT_FRAME,
   ANIMATION_SPEED,
   CHARACTER_SPEED,
 } from "../../utils/constants.js";
+import { Bullet } from "../Various/Bullets";
 
 export default class Player extends Character {
   constructor(scene) {
@@ -14,6 +21,8 @@ export default class Player extends Character {
       BaseTexture.from(PlayerSpriteData.meta.image),
       PlayerSpriteData
     );
+    this.bullets = [];
+    this.bulletTexture;
     this.preparePlayer();
 
     window.addEventListener("keydown", this.manageInput);
@@ -94,6 +103,12 @@ export default class Player extends Character {
       default:
         break;
     }
+  };
+
+  shoot = (e) => {
+    const origin = { x: this.playerTexture.x, y: this.playerTexture.y };
+    const destination = { x: e.clientX, y: e.clientY };
+    this.bullets.push(new Bullet(origin, destination, this.scene));
   };
 
   update() {

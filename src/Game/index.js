@@ -5,12 +5,15 @@ import Player from "./Characters/Player";
 export default class Game {
   constructor(scene) {
     this.scene = scene;
+    this.scene.interactive = true;
     this.backgroundSpriteSheet = new Spritesheet(
       BaseTexture.from(BackgroundSheetData.meta.image),
       BackgroundSheetData
     );
     this.prepareBackground();
     this.player = new Player(this.scene);
+
+    window.addEventListener("click", this.player.shoot);
   }
 
   async prepareBackground() {
