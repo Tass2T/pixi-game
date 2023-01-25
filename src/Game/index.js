@@ -1,6 +1,7 @@
 import { Spritesheet, BaseTexture, TilingSprite } from "pixi.js";
 import BackgroundSheetData from "../assets/BackgroundSheetData";
 import Player from "./Characters/Player";
+import { HEIGHT, WIDTH } from "../utils/constants";
 
 export default class Game {
   constructor(scene) {
@@ -20,8 +21,8 @@ export default class Game {
     await this.backgroundSpriteSheet.parse();
     const ground = new TilingSprite(
       this.backgroundSpriteSheet.textures.ground,
-      760,
-      420
+      WIDTH,
+      HEIGHT
     );
     this.scene.addChild(ground);
   }

@@ -1,11 +1,14 @@
 import { Application } from "pixi.js";
 import Game from "./Game";
+import { HEIGHT, WIDTH } from "./utils/constants";
 
 export default class Pixi {
   constructor() {
     const gameArea = document.querySelector("#app");
     this.app = new Application({
       autoResize: true,
+      width: WIDTH,
+      height: HEIGHT,
       resolution: devicePixelRatio,
       backgroundColor: 0x000000,
     });

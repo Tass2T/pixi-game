@@ -25,7 +25,12 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	height: 100vh;
 	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: black;
 }
 ol, ul {
 	list-style: none;
