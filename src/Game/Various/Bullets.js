@@ -1,8 +1,8 @@
 import { Sprite, Texture } from "pixi.js";
+import gsap from "gsap";
 
 export class Bullet {
   constructor(origin, destination, scene) {
-    console.log(origin);
     this.origin = {
       x: origin.x,
       y: origin.y,
@@ -19,6 +19,9 @@ export class Bullet {
     this.sprite = Sprite.from(this.bulletTexture);
     this.sprite.x = origin.x;
     this.sprite.y = origin.y;
+    this.sprite.anchor.set(1)
+
+    this.animation = gsap.to(this.sprite, {pixi:{rotation: 180},duration: 0})
 
     scene.addChild(this.sprite);
   }
