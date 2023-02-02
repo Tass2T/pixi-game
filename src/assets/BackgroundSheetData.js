@@ -12,7 +12,7 @@ export default {
     },
   },
   meta: {
-    image: "/src/assets/backgroundSheet.png",
+    image: "/src/assets/background/backgroundSheet.png",
     format: "RGBA8888",
     size: { w: 1080, h: 12 },
     scale: 1,
