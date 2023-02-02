@@ -4,24 +4,23 @@ import { HEIGHT, WIDTH } from "./utils/constants";
 import gsap from "gsap";
 import PixiPlugin from "gsap/PixiPlugin";
 
-gsap.registerPlugin(PixiPlugin)
-PixiPlugin.registerPIXI(PIXI)
+gsap.registerPlugin(PixiPlugin);
+PixiPlugin.registerPIXI(PIXI);
 
 export default class Pixi {
   constructor() {
     const gameArea = document.querySelector("#app");
     this.app = new PIXI.Application({
-      autoResize: true,
       width: WIDTH,
       height: HEIGHT,
-      resolution: devicePixelRatio,
       backgroundColor: 0x000000,
     });
+
     // use gsap ticker instead
-    this.app.ticker.stop()
+    this.app.ticker.stop();
     gsap.ticker.add(() => {
-      this.app.ticker.update()
-    })
+      this.app.ticker.update();
+    });
     this.scene = this.app.stage;
     gameArea.appendChild(this.app.view);
 
