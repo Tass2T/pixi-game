@@ -19,10 +19,33 @@ export class Bullet {
     this.sprite = Sprite.from(this.bulletTexture);
     this.sprite.x = origin.x;
     this.sprite.y = origin.y;
-    this.sprite.anchor.set(1)
+    this.sprite.anchor.set(1);
+    const rotation = this.getRotation();
 
-    this.animation = gsap.to(this.sprite, {pixi:{rotation: 180},duration: 0})
+    this.timeline = gsap.timeline({ onComplete: this.explode });
+    this.timeline.to(this.sprite, {
+      pixi: { rotation },
+      duration: 0,
+    });
+    this.timeline.to(this.sprite, {
+      pixi: {
+        x: destination.x,
+        y: destination.y,
+      },
+      duration: 0.3,
+    });
 
     scene.addChild(this.sprite);
   }
+
+  getRotation = () => {
+    const vectorX = this.destination.x - this.origin.x;
+    const vectorY = this.destination.y - this.origin.y;
+    const rad = Math.atan2(vectorY, vectorX);
+    return Math.round(rad * (180 / Math.PI));
+  };
+
+  explode = () => {
+    console.log("explode");
+  };
 }
