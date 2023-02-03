@@ -5,6 +5,7 @@ import {
   DEFAULT_FRAME,
   ANIMATION_SPEED,
   CHARACTER_SPEED,
+  CONTROLS
 } from "../../utils/constants.js";
 import { Bullet } from "../Various/Bullets";
 
@@ -16,6 +17,7 @@ export default class Player extends Character {
       player
     );
     this.preparePlayer();
+    this.keys = {}
     this.bullets = [];
     this.bulletTexture;
 
@@ -36,67 +38,32 @@ export default class Player extends Character {
     this.scene.addChild(this.playerTexture);
   }
 
-  moveTo = (direction) => {
-    this.playerTexture.textures = this.playerSpriteSheet.animations[direction];
-    this.playerTexture.play();
+  updateSprite = () => {
+    for (const [key, value] of Object.entries(CONTROLS)){
+      if (this.keys[value]) {
+        this.playerTexture.textures =  this.playerSpriteSheet.animations[key.toLowerCase()]
+        this.playerTexture.play();
+        return
+      }
 
-    // because in the spreadsheet, idle frame for left orientation are in even positions instead of odd
-    direction === "left"
-      ? (this.playerTexture.currentFrame = 0)
-      : (this.playerTexture.currentFrame = DEFAULT_FRAME);
-
-    if (!this.directions.includes(direction)) {
-      this.directions.push(direction);
+      this.playerTexture.stop()
     }
-  };
-
-  handleKeyUp = (direction) => {
-    if (this.directions.includes(direction)) {
-      this.directions.splice(
-        this.directions.findIndex((item) => item === direction),
-        1
-      );
-    }
+    
   };
 
   manageInput = (e) => {
     if (e.repeat) return;
     switch (e.type) {
       case "keydown":
-        switch (e.keyCode) {
-          case 87:
-            this.moveTo("up");
-            break;
-          case 83:
-            this.moveTo("down");
-            break;
-          case 65:
-            this.moveTo("left");
-            break;
-          case 68:
-            this.moveTo("right");
-            break;
-        }
+        this.keys[e.keyCode] = true;
         break;
       case "keyup":
-        switch (e.keyCode) {
-          case 87:
-            this.handleKeyUp("up");
-            break;
-          case 83:
-            this.handleKeyUp("down");
-            break;
-          case 65:
-            this.handleKeyUp("left");
-            break;
-          case 68:
-            this.handleKeyUp("right");
-            break;
-        }
+        this.keys[e.keyCode] = false
         break;
       default:
         break;
     }
+    this.updateSprite()
   };
 
   shoot = (e) => {
@@ -106,25 +73,11 @@ export default class Player extends Character {
   };
 
   update() {
-    if (!this.directions.length) this.playerTexture.stop();
-    this.directions.forEach((item) => {
-      switch (item) {
-        case "down":
-          this.playerTexture.y += CHARACTER_SPEED;
-          break;
-        case "up":
-          this.playerTexture.y -= CHARACTER_SPEED;
-          break;
-        case "left":
-          this.playerTexture.x -= CHARACTER_SPEED;
-          break;
-        case "right":
-          this.playerTexture.x += CHARACTER_SPEED;
-          break;
-        default:
-          break;
-      }
-    });
+
+    if (this.keys[CONTROLS.DOWN]) this.playerTexture.y += CHARACTER_SPEED;
+    if (this.keys[CONTROLS.UP]) this.playerTexture.y -= CHARACTER_SPEED;
+    if (this.keys[CONTROLS.LEFT]) this.playerTexture.x -= CHARACTER_SPEED;
+    if (this.keys[CONTROLS.RIGHT]) this.playerTexture.x += CHARACTER_SPEED;
   }
 
   dispose() {
