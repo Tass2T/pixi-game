@@ -47,6 +47,9 @@ export class Bullet {
   };
 
   explode = () => {
-    console.log("explode");
+    this.scene. removeChild(this.sprite)
+    this.sprite.destroy
+    delete this
+    
   };
 }

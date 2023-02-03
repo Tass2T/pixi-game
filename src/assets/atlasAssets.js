@@ -25,13 +25,15 @@ export const background = {
 export const explosion = {
   frames: {
     explosion_1: {
-      frame: { x: 0, y: 0 },
+      frame: { x: 0, y: 0, w: 1500, h:1500 },
+      sourceSize: { w: 34, h: 64 },
+      spriteSourceSize: { x: 32, y: 0, w: 64, h: 64 },
     },
   },
   meta: {
-    image: "src/assets/bullets/explosion",
+    image: "src/assets/bullets/explosion.jpg",
     format: "RGBA8888",
-    size: { w: 1080, h: 12 },
+    size: { w: 4500, h: 4500 },
     scale: 1,
   },
   animations: {
