@@ -1,5 +1,5 @@
 import Character from "./Character";
-import PlayerSpriteData from "../../assets/PlayerSpriteData.js";
+import { player } from "../../assets/atlasAssets";
 import { AnimatedSprite, Spritesheet, BaseTexture } from "pixi.js";
 import {
   DEFAULT_FRAME,
@@ -12,12 +12,12 @@ export default class Player extends Character {
   constructor(scene) {
     super(scene);
     this.playerSpriteSheet = new Spritesheet(
-      BaseTexture.from(PlayerSpriteData.meta.image),
-      PlayerSpriteData
+      BaseTexture.from(player.meta.image),
+      player
     );
+    this.preparePlayer();
     this.bullets = [];
     this.bulletTexture;
-    this.preparePlayer();
 
     window.addEventListener("keydown", this.manageInput);
     window.addEventListener("keyup", this.manageInput);
