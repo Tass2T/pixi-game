@@ -22,6 +22,7 @@ export default class Pixi {
       this.app.ticker.update();
     });
     this.scene = this.app.stage;
+    this.scene.interactive = true
     gameArea.appendChild(this.app.view);
 
     this.init();

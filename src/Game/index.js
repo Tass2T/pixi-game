@@ -14,7 +14,7 @@ export default class Game {
     this.prepareBackground();
     this.player = new Player(this.scene);
 
-    window.addEventListener("click", this.player.shoot);
+    this.scene.on("click", this.player.shoot);
   }
 
   async prepareBackground() {

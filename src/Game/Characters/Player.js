@@ -1,6 +1,6 @@
 import Character from "./Character";
 import { player } from "../../assets/atlasAssets";
-import { AnimatedSprite, Spritesheet, BaseTexture } from "pixi.js";
+import { AnimatedSprite, Spritesheet, BaseTexture, Renderer } from "pixi.js";
 import {
   DEFAULT_FRAME,
   ANIMATION_SPEED,
@@ -67,8 +67,9 @@ export default class Player extends Character {
   };
 
   shoot = (e) => {
+    const pos = e.data.global
     const origin = { x: this.playerTexture.x, y: this.playerTexture.y };
-    const destination = { x: e.clientX, y: e.clientY };
+    const destination = { x: pos.x, y: pos.y };
     this.bullets.push(new Bullet(origin, destination, this.scene));
   };
 

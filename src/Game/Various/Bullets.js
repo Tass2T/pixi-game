@@ -19,7 +19,7 @@ export class Bullet {
     this.sprite = Sprite.from(this.bulletTexture);
     this.sprite.x = origin.x;
     this.sprite.y = origin.y;
-    this.sprite.anchor.set(1);
+    this.sprite.anchor.set(0.5);
     const rotation = this.getRotation();
 
     this.timeline = gsap.timeline({ onComplete: this.explode });
@@ -42,7 +42,7 @@ export class Bullet {
     const vectorX = this.destination.x - this.origin.x;
     const vectorY = this.destination.y - this.origin.y;
     const rad = Math.atan2(vectorY, vectorX);
-    return Math.round(rad * (180 / Math.PI));
+    return Math.round(rad * (360 / Math.PI));
   };
 
   explode = () => {
