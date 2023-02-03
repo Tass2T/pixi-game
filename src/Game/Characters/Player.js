@@ -1,11 +1,13 @@
 import Character from "./Character";
 import { player } from "../../assets/atlasAssets";
-import { AnimatedSprite, Spritesheet, BaseTexture, Renderer } from "pixi.js";
+import { AnimatedSprite, Spritesheet, BaseTexture } from "pixi.js";
 import {
   DEFAULT_FRAME,
   ANIMATION_SPEED,
   CHARACTER_SPEED,
-  CONTROLS
+  CONTROLS,
+  HEIGHT,
+  WIDTH
 } from "../../utils/constants.js";
 import { Bullet } from "../Various/Bullets";
 
@@ -74,11 +76,10 @@ export default class Player extends Character {
   };
 
   update() {
-
-    if (this.keys[CONTROLS.DOWN]) this.playerTexture.y += CHARACTER_SPEED;
-    if (this.keys[CONTROLS.UP]) this.playerTexture.y -= CHARACTER_SPEED;
-    if (this.keys[CONTROLS.LEFT]) this.playerTexture.x -= CHARACTER_SPEED;
-    if (this.keys[CONTROLS.RIGHT]) this.playerTexture.x += CHARACTER_SPEED;
+    if (this.keys[CONTROLS.DOWN] && this.playerTexture.y <= HEIGHT - 52) this.playerTexture.y += CHARACTER_SPEED;
+    if (this.keys[CONTROLS.UP] && this.playerTexture.y >= 0) this.playerTexture.y -= CHARACTER_SPEED;
+    if (this.keys[CONTROLS.LEFT] && this.playerTexture.x >= 0) this.playerTexture.x -= CHARACTER_SPEED;
+    if (this.keys[CONTROLS.RIGHT] && this.playerTexture.x <= WIDTH - 45) this.playerTexture.x += CHARACTER_SPEED;
   }
 
   dispose() {

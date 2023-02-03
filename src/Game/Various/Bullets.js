@@ -3,6 +3,7 @@ import gsap from "gsap";
 
 export class Bullet {
   constructor(origin, destination, scene) {
+    this.scene = scene
     this.origin = {
       x: origin.x,
       y: origin.y,
@@ -42,7 +43,7 @@ export class Bullet {
     const vectorX = this.destination.x - this.origin.x;
     const vectorY = this.destination.y - this.origin.y;
     const rad = Math.atan2(vectorY, vectorX);
-    return Math.round(rad * (360 / Math.PI));
+    return Math.round(rad * (180 / Math.PI));
   };
 
   explode = () => {
