@@ -1,5 +1,5 @@
 import Character from "./Character";
-import { player } from "../../assets/atlasAssets";
+import { player, explosion } from "../../assets/atlasAssets";
 import { AnimatedSprite, Spritesheet, BaseTexture } from "pixi.js";
 import {
   DEFAULT_FRAME,
@@ -19,6 +19,7 @@ export default class Player extends Character {
       player
     );
     this.preparePlayer();
+    this.prepareExplosion(explosion)
     this.keys = {}
     this.bullets = [];
     this.bulletTexture;
@@ -38,6 +39,23 @@ export default class Player extends Character {
     this.playerTexture.anchor.set(0.5);
 
     this.scene.addChild(this.playerTexture);
+  }
+
+  async prepareExplosion(explosion) {
+
+    this.explosionSheet = new Spritesheet(
+      BaseTexture.from(explosion.meta.image),
+      explosion
+    )
+    await this.explosionSheet.parse()
+
+    this.explosionTexture = new AnimatedSprite(
+      this.explosionSheet.animations.explosion
+    )
+
+    this.explosionTexture.animationSpeed = 0.3;
+    this.explosionTexture.loop = false
+    this.explosionTexture.anchor.set(0.5);
   }
 
   updateSprite = () => {
@@ -72,7 +90,7 @@ export default class Player extends Character {
     const pos = e.data.global
     const origin = { x: this.playerTexture.x, y: this.playerTexture.y };
     const destination = { x: pos.x, y: pos.y };
-    this.bullets.push(new Bullet(origin, destination, this.scene));
+    this.bullets.push(new Bullet(origin, destination, this.scene, this.explosionTexture));
   };
 
   update() {

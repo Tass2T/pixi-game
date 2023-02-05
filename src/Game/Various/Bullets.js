@@ -2,7 +2,7 @@ import { Sprite, Texture } from "pixi.js";
 import gsap from "gsap";
 
 export class Bullet {
-  constructor(origin, destination, scene) {
+  constructor(origin, destination, scene, animatedExplosion) {
     this.scene = scene
     this.origin = {
       x: origin.x,
@@ -17,6 +17,7 @@ export class Bullet {
       y: origin.y,
     };
     this.bulletTexture = Texture.from("/src/assets/bullets/rocket.png");
+    this.animatedExplosion = animatedExplosion
     this.sprite = Sprite.from(this.bulletTexture);
     this.sprite.x = origin.x;
     this.sprite.y = origin.y;
@@ -47,9 +48,18 @@ export class Bullet {
   };
 
   explode = () => {
+    this.sprite.destroy()
+    this.sprite = this.animatedExplosion
+    this.sprite.x = this.destination.x - 45
+    this.sprite.y = this.destination.y - 45
+    this.animatedExplosion.gotoAndPlay(0)
+    this.scene.addChild(this.sprite)
+    this.animatedExplosion.onComplete = () => {
     this.scene. removeChild(this.sprite)
-    this.sprite.destroy
-    delete this
+     this.bulletTexture.destroy()
+      delete this
+
+    }
     
   };
 }
