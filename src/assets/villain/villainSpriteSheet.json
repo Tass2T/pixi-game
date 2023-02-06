@@ -1,1 +1,114 @@
-{}
+{
+  "frames": {
+    "villain_down1": {
+      "frame": { "x": 0, "y": 0, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    },
+    "villain_down2": {
+      "frame": { "x": 0, "y": 500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    },
+    "villain_down3": {
+      "frame": { "x": 0, "y": 1000, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    },
+    "villain_down4": {
+      "frame": { "x": 0, "y": 1500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    },
+
+    "villain_right1": {
+      "frame": { "x": 500, "y": 0, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    },
+    "villain_right2": {
+      "frame": { "x": 500, "y": 500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    },
+    "villain_right3": {
+      "frame": { "x": 500, "y": 1000, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    },
+    "villain_right4": {
+      "frame": { "x": 500, "y": 1500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    },
+
+    "villain_left1": {
+      "frame": { "x": 1000, "y": 0, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    },
+    "villain_left2": {
+      "frame": { "x": 1000, "y": 500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    },
+    "villain_left3": {
+      "frame": { "x": 1000, "y": 1000, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    },
+    "villain_left4": {
+      "frame": { "x": 1000, "y": 1500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    },
+
+    "villain_top1": {
+      "frame": { "x": 1500, "y": 0, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    },
+    "villain_top2": {
+      "frame": { "x": 1500, "y": 500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    },
+    "villain_top3": {
+      "frame": { "x": 1500, "y": 1000, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    },
+    "villain_top4": {
+      "frame": { "x": 1500, "y": 1500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 34, "h": 64 },
+      "spriteSourceSize": { "x": 32, "y": 0, "w": 64, "h": 64 }
+    }
+  },
+  "meta": {
+    "image": "./villanSpritesheet.png",
+    "format": "RGBA8888",
+    "size": { "w": 2000, "h": 2000 },
+    "scale": 1
+  },
+  "animation": {
+    "down": [
+      "villain_down1",
+      "villain_down2",
+      "villain_down3",
+      "villain_down4"
+    ],
+    "up": ["villain_top1", "villain_top2", "villain_top3", "villain_top4"],
+    "left": [
+      "villain_left1",
+      "villain_left2",
+      "villain_left3",
+      "villain_left4"
+    ],
+    "right": [
+      "villain_right1",
+      "villain_right2",
+      "villain_right3",
+      "villain_right4"
+    ]
+  }
+}
