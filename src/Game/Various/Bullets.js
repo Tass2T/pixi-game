@@ -3,7 +3,7 @@ import gsap from "gsap";
 
 export class Bullet {
   constructor(origin, destination, scene, animatedExplosion) {
-    this.scene = scene
+    this.scene = scene;
     this.origin = {
       x: origin.x,
       y: origin.y,
@@ -17,7 +17,7 @@ export class Bullet {
       y: origin.y,
     };
     this.bulletTexture = Texture.from("/src/assets/bullets/rocket.png");
-    this.animatedExplosion = animatedExplosion
+    this.animatedExplosion = animatedExplosion;
     this.sprite = Sprite.from(this.bulletTexture);
     this.sprite.x = origin.x;
     this.sprite.y = origin.y;
@@ -43,23 +43,20 @@ export class Bullet {
   getRotation = () => {
     const vectorX = this.destination.x - this.origin.x;
     const vectorY = this.destination.y - this.origin.y;
-    const rad = Math.atan2(vectorY, vectorX);
+    const rad = Math.atan2(vectorY, vectorX) + Math.PI / 2;
     return Math.round(rad * (180 / Math.PI));
   };
 
   explode = () => {
-    this.sprite.destroy()
-    this.sprite = this.animatedExplosion
-    this.sprite.x = this.destination.x - 45
-    this.sprite.y = this.destination.y - 45
-    this.animatedExplosion.gotoAndPlay(0)
-    this.scene.addChild(this.sprite)
+    this.sprite.destroy();
+    this.sprite = this.animatedExplosion;
+    this.sprite.x = this.destination.x - 45;
+    this.sprite.y = this.destination.y - 45;
+    this.animatedExplosion.gotoAndPlay(0);
+    this.scene.addChild(this.sprite);
     this.animatedExplosion.onComplete = () => {
-    this.scene. removeChild(this.sprite)
-     this.bulletTexture.destroy()
-      delete this
-
-    }
-    
+      this.scene.removeChild(this.sprite);
+      delete this;
+    };
   };
 }
