@@ -7,7 +7,7 @@ import {
   CHARACTER_SPEED,
   CONTROLS,
   HEIGHT,
-  WIDTH
+  WIDTH,
 } from "../../utils/constants.js";
 import { Bullet } from "../Various/Bullets";
 
@@ -19,8 +19,8 @@ export default class Player extends Character {
       player
     );
     this.preparePlayer();
-    this.prepareExplosion(explosion)
-    this.keys = {}
+    this.prepareExplosion(explosion);
+    this.keys = {};
     this.bullets = [];
     this.bulletTexture;
 
@@ -37,38 +37,39 @@ export default class Player extends Character {
     this.playerTexture.animationSpeed = ANIMATION_SPEED;
     this.playerTexture.currentFrame = DEFAULT_FRAME;
     this.playerTexture.anchor.set(0.5);
+    this.playerTexture.x = WIDTH / 2 - this.playerTexture.width;
+    this.playerTexture.y = HEIGHT / 2 - this.playerTexture.height;
 
     this.scene.addChild(this.playerTexture);
   }
 
   async prepareExplosion(explosion) {
-
     this.explosionSheet = new Spritesheet(
       BaseTexture.from(explosion.meta.image),
       explosion
-    )
-    await this.explosionSheet.parse()
+    );
+    await this.explosionSheet.parse();
 
     this.explosionTexture = new AnimatedSprite(
       this.explosionSheet.animations.explosion
-    )
+    );
 
     this.explosionTexture.animationSpeed = 0.3;
-    this.explosionTexture.loop = false
+    this.explosionTexture.loop = false;
     this.explosionTexture.anchor.set(0.5);
   }
 
   updateSprite = () => {
-    for (const [key, value] of Object.entries(CONTROLS)){
+    for (const [key, value] of Object.entries(CONTROLS)) {
       if (this.keys[value]) {
-        this.playerTexture.textures =  this.playerSpriteSheet.animations[key.toLowerCase()]
+        this.playerTexture.textures =
+          this.playerSpriteSheet.animations[key.toLowerCase()];
         this.playerTexture.play();
-        return
+        return;
       }
 
-      this.playerTexture.stop()
+      this.playerTexture.stop();
     }
-    
   };
 
   manageInput = (e) => {
@@ -78,26 +79,32 @@ export default class Player extends Character {
         this.keys[e.keyCode] = true;
         break;
       case "keyup":
-        this.keys[e.keyCode] = false
+        this.keys[e.keyCode] = false;
         break;
       default:
         break;
     }
-    this.updateSprite()
+    this.updateSprite();
   };
 
   shoot = (e) => {
-    const pos = e.data.global
+    const pos = e.data.global;
     const origin = { x: this.playerTexture.x, y: this.playerTexture.y };
     const destination = { x: pos.x, y: pos.y };
-    this.bullets.push(new Bullet(origin, destination, this.scene, this.explosionTexture));
+    this.bullets.push(
+      new Bullet(origin, destination, this.scene, this.explosionTexture)
+    );
   };
 
   update() {
-    if (this.keys[CONTROLS.DOWN] && this.playerTexture.y <= HEIGHT - 52) this.playerTexture.y += CHARACTER_SPEED;
-    if (this.keys[CONTROLS.UP] && this.playerTexture.y >= 0) this.playerTexture.y -= CHARACTER_SPEED;
-    if (this.keys[CONTROLS.LEFT] && this.playerTexture.x >= 0) this.playerTexture.x -= CHARACTER_SPEED;
-    if (this.keys[CONTROLS.RIGHT] && this.playerTexture.x <= WIDTH - 45) this.playerTexture.x += CHARACTER_SPEED;
+    if (this.keys[CONTROLS.DOWN] && this.playerTexture.y <= HEIGHT - 52)
+      this.playerTexture.y += CHARACTER_SPEED;
+    if (this.keys[CONTROLS.UP] && this.playerTexture.y >= 0)
+      this.playerTexture.y -= CHARACTER_SPEED;
+    if (this.keys[CONTROLS.LEFT] && this.playerTexture.x >= 0)
+      this.playerTexture.x -= CHARACTER_SPEED;
+    if (this.keys[CONTROLS.RIGHT] && this.playerTexture.x <= WIDTH - 45)
+      this.playerTexture.x += CHARACTER_SPEED;
   }
 
   dispose() {

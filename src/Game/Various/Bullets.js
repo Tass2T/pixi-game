@@ -19,8 +19,8 @@ export class Bullet {
     this.bulletTexture = Texture.from("/src/assets/bullets/rocket.png");
     this.animatedExplosion = animatedExplosion;
     this.sprite = Sprite.from(this.bulletTexture);
-    this.sprite.x = origin.x;
-    this.sprite.y = origin.y;
+    this.sprite.x = origin.x + 20;
+    this.sprite.y = origin.y + 20;
     this.sprite.anchor.set(0.5);
     const rotation = this.getRotation();
 
