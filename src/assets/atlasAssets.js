@@ -25,32 +25,32 @@ export const background = {
 export const explosion = {
   frames: {
     explosion_1: {
-      frame: { x: 0, y: 0, w: 460, h:460 },
+      frame: { x: 0, y: 0, w: 460, h: 460 },
       sourceSize: { w: 32, h: 32 },
       spriteSourceSize: { x: 32, y: 0, w: 64, h: 64 },
     },
     explosion_2: {
-      frame: { x: 460, y: 0, w: 460, h:460 },
+      frame: { x: 460, y: 0, w: 460, h: 460 },
       sourceSize: { w: 32, h: 32 },
       spriteSourceSize: { x: 32, y: 0, w: 64, h: 64 },
     },
     explosion_3: {
-      frame: { x: 920, y: 0, w: 460, h:460 },
+      frame: { x: 920, y: 0, w: 460, h: 460 },
       sourceSize: { w: 32, h: 32 },
       spriteSourceSize: { x: 32, y: 0, w: 64, h: 64 },
     },
     explosion_4: {
-      frame: { x: 1380, y: 0, w: 460, h:460 },
+      frame: { x: 1380, y: 0, w: 460, h: 460 },
       sourceSize: { w: 32, h: 32 },
       spriteSourceSize: { x: 32, y: 0, w: 64, h: 64 },
     },
     explosion_5: {
-      frame: { x: 1840, y: 0, w: 460, h:460 },
+      frame: { x: 1840, y: 0, w: 460, h: 460 },
       sourceSize: { w: 32, h: 32 },
       spriteSourceSize: { x: 32, y: 0, w: 64, h: 64 },
     },
     explosion_6: {
-      frame: { x: 2300, y: 0, w: 460, h:460 },
+      frame: { x: 2300, y: 0, w: 460, h: 460 },
       sourceSize: { w: 32, h: 32 },
       spriteSourceSize: { x: 32, y: 0, w: 64, h: 64 },
     },
@@ -62,7 +62,14 @@ export const explosion = {
     scale: 6,
   },
   animations: {
-    explosion: ["explosion_1","explosion_2","explosion_3", "explosion_4", "explosion_5", "explosion_6"],
+    explosion: [
+      "explosion_1",
+      "explosion_2",
+      "explosion_3",
+      "explosion_4",
+      "explosion_5",
+      "explosion_6",
+    ],
   },
 };
 
