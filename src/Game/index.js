@@ -2,6 +2,7 @@ import { TilingSprite } from "pixi.js";
 import Player from "./Characters/Player";
 import { HEIGHT, WIDTH } from "../utils/constants";
 import SpriteManager from "./Various/SpriteManager";
+import Villain from "./Characters/Villain";
 
 export default class Game {
   constructor(scene) {
@@ -10,7 +11,7 @@ export default class Game {
     this.spriteManager = new SpriteManager()
     this.prepareBackground();
     this.player = new Player(this.scene);
-
+  this.villain = new Villain(this.scene)
     this.scene.on("click", this.player.shoot);
   }
 

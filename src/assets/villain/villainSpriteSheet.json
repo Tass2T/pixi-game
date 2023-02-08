@@ -88,9 +88,9 @@
     "image": "./villanSpritesheet.png",
     "format": "RGBA8888",
     "size": { "w": 2000, "h": 2000 },
-    "scale": 1
+    "scale": 4.5
   },
-  "animation": {
+  "animations": {
     "down": [
       "villain_down1",
       "villain_down2",

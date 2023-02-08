@@ -22,7 +22,7 @@ export default class SpriteManager {
       "/src/assets/bullets/explosionSpriteSheetData.json"
     );
     this.loader.add("bullet", "/src/assets/bullets/rocket.png")
-    this.loader.add("villain", "/src/assets/villain/villanSpritesheet.png")
+    this.loader.add("villain", "/src/assets/villain/villainSpriteSheet.json")
   };
 
   loadTextures = async () => {
@@ -38,7 +38,7 @@ export default class SpriteManager {
     this.backgroundTexture = texturePromise.background;
     this.explosionTexture = texturePromise.explosion;
     this.bulletTexture = texturePromise.bullet
-    this.villain = texturePromise.villain
+    this.villainTexture = texturePromise.villain
     this.isLoading = false;
   }
 
