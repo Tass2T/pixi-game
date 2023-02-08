@@ -1,6 +1,5 @@
 import Character from "./Character";
-import { explosion } from "../../assets/atlasAssets";
-import { AnimatedSprite, Spritesheet, BaseTexture } from "pixi.js";
+import { AnimatedSprite } from "pixi.js";
 import {
   DEFAULT_FRAME,
   ANIMATION_SPEED,
@@ -17,7 +16,6 @@ export default class Player extends Character {
     super(scene);
     this.spriteManager = new SpriteManager()
     this.preparePlayer();
-    this.prepareExplosion(explosion);
     this.keys = {};
     this.bullets = [];
 
@@ -39,22 +37,7 @@ export default class Player extends Character {
     
     this.scene.addChild(this.playerTexture);
   }
-
-  async prepareExplosion(explosion) {
-    this.explosionSheet = new Spritesheet(
-      BaseTexture.from(explosion.meta.image),
-      explosion
-    );
-    await this.explosionSheet.parse();
-
-    this.explosionTexture = new AnimatedSprite(
-      this.explosionSheet.animations.explosion
-    );
-
-    this.explosionTexture.animationSpeed = 0.3;
-    this.explosionTexture.loop = false;
-    this.explosionTexture.anchor.set(0.5);
-  }
+ 
 
   updateSprite = () => {
     for (const [key, value] of Object.entries(CONTROLS)) {

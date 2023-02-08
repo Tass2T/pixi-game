@@ -1,4 +1,4 @@
-import { Assets } from "pixi.js";
+import { Assets, Texture } from "pixi.js";
 
 let instance = null;
 
@@ -21,6 +21,7 @@ export default class SpriteManager {
       "explosion",
       "/src/assets/bullets/explosionSpriteSheetData.json"
     );
+    this.loader.add("bullet", "/src/assets/bullets/rocket.png")
   };
 
   loadTextures = async () => {
@@ -28,11 +29,13 @@ export default class SpriteManager {
       "player",
       "background",
       "explosion",
+      "bullet"
     ]);
     
     this.playerTexture = texturePromise.player;
     this.backgroundTexture = texturePromise.background;
     this.explosionTexture = texturePromise.explosion;
+    this.bulletTexture = texturePromise.bullet
     this.isLoading = false;
   }
 

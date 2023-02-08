@@ -1,9 +1,11 @@
-import { Sprite, Texture } from "pixi.js";
+import { Sprite, AnimatedSprite } from "pixi.js";
 import gsap from "gsap";
+import SpriteManager from "./SpriteManager";
 
 export class Bullet {
-  constructor(origin, destination, scene, animatedExplosion) {
+  constructor(origin, destination, scene, explosionTexture) {
     this.scene = scene;
+    this.spriteManager = new SpriteManager()
     this.origin = {
       x: origin.x,
       y: origin.y,
@@ -16,9 +18,8 @@ export class Bullet {
       x: origin.x,
       y: origin.y,
     };
-    this.bulletTexture = Texture.from("/src/assets/bullets/rocket.png");
-    this.animatedExplosion = animatedExplosion;
-    this.sprite = Sprite.from(this.bulletTexture);
+    this.explosionTexture = this.prepareExplosion();
+    this.sprite = Sprite.from(this.spriteManager.getTexture("bulletTexture"));
     this.sprite.x = origin.x + 20;
     this.sprite.y = origin.y + 20;
     this.sprite.anchor.set(0.5);
@@ -49,14 +50,27 @@ export class Bullet {
 
   explode = () => {
     this.sprite.destroy();
-    this.sprite = this.animatedExplosion;
+    this.sprite = this.explosionTexture;
     this.sprite.x = this.destination.x - 45;
     this.sprite.y = this.destination.y - 45;
-    this.animatedExplosion.gotoAndPlay(0);
+    this.explosionTexture.gotoAndPlay(0);
     this.scene.addChild(this.sprite);
-    this.animatedExplosion.onComplete = () => {
+    this.explosionTexture.onComplete = () => {
       this.scene.removeChild(this.sprite);
       delete this;
     };
   };
+
+  prepareExplosion =async ()=> {
+    this.explosionSheet = this.spriteManager.getTexture("explosionTexture")
+    
+    this.explosionTexture =await  new AnimatedSprite(
+      this.explosionSheet.animations.explosion
+    );
+
+    this.explosionTexture.animationSpeed = 0.3;
+    this.explosionTexture.loop = false;
+    this.explosionTexture.anchor.set(0.5);
+
+  }
 }
