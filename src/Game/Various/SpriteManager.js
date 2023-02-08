@@ -1,17 +1,17 @@
-import { Assets, Spritesheet, BaseTexture } from "pixi.js";
+import { Assets } from "pixi.js";
 
 let instance = null;
 
 export default class SpriteManager {
   constructor() {
-    if (instance) return this;
+    if (instance) return instance;
     instance = this;
     this.loader = Assets;
     this.isLoading = true;
-    this.initTexture();
+    this.addTextures();
   }
 
-  initTexture = async () => {
+  addTextures = () => {
     this.loader.add("player", "/src/assets/player/playerSpriteSheetData.json");
     this.loader.add(
       "background",
@@ -21,19 +21,20 @@ export default class SpriteManager {
       "explosion",
       "/src/assets/bullets/explosionSpriteSheetData.json"
     );
-    const texturePromise = this.loader.load([
+  };
+
+  loadTextures = async () => {
+    const texturePromise = await this.loader.load([
       "player",
       "background",
       "explosion",
     ]);
-
-    texturePromise.then((resolvedTexture) => {
-      this.playerTexture = resolvedTexture.player;
-      this.backgroundTexture = resolvedTexture.background;
-      this.explosionTexture = resolvedTexture.explosion;
-      this.isLoading = false;
-    });
-  };
+    
+    this.playerTexture = texturePromise.player;
+    this.backgroundTexture = texturePromise.background;
+    this.explosionTexture = texturePromise.explosion;
+    this.isLoading = false;
+  }
 
   getTexture = (name) => {
     return this[name];

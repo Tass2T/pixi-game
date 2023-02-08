@@ -1,16 +1,13 @@
-import { Spritesheet, BaseTexture, TilingSprite } from "pixi.js";
-import { background } from "../assets/atlasAssets";
+import { TilingSprite } from "pixi.js";
 import Player from "./Characters/Player";
 import { HEIGHT, WIDTH } from "../utils/constants";
+import SpriteManager from "./Various/SpriteManager";
 
 export default class Game {
   constructor(scene) {
     this.scene = scene;
     this.scene.interactive = true;
-    this.backgroundSpriteSheet = new Spritesheet(
-      BaseTexture.from(background.meta.image),
-      background
-    );
+    this.spriteManager = new SpriteManager()
     this.prepareBackground();
     this.player = new Player(this.scene);
 
@@ -18,7 +15,8 @@ export default class Game {
   }
 
   async prepareBackground() {
-    await this.backgroundSpriteSheet.parse();
+    this.backgroundSpriteSheet = this.spriteManager.getTexture("backgroundTexture")
+    
     const ground = new TilingSprite(
       this.backgroundSpriteSheet.textures.ground,
       WIDTH,

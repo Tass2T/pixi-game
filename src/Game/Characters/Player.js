@@ -1,5 +1,5 @@
 import Character from "./Character";
-import { player, explosion } from "../../assets/atlasAssets";
+import { explosion } from "../../assets/atlasAssets";
 import { AnimatedSprite, Spritesheet, BaseTexture } from "pixi.js";
 import {
   DEFAULT_FRAME,
@@ -10,36 +10,33 @@ import {
   WIDTH,
 } from "../../utils/constants.js";
 import { Bullet } from "../Various/Bullets";
+import SpriteManager from "../Various/SpriteManager.js";
 
 export default class Player extends Character {
   constructor(scene) {
     super(scene);
-    this.playerSpriteSheet = new Spritesheet(
-      BaseTexture.from(player.meta.image),
-      player
-    );
+    this.spriteManager = new SpriteManager()
     this.preparePlayer();
     this.prepareExplosion(explosion);
     this.keys = {};
     this.bullets = [];
-    this.bulletTexture;
 
     window.addEventListener("keydown", this.manageInput);
     window.addEventListener("keyup", this.manageInput);
   }
 
   async preparePlayer() {
-    await this.playerSpriteSheet.parse();
-
+    this.playerSpriteSheet = this.spriteManager.getTexture("playerTexture");
     this.playerTexture = new AnimatedSprite(
       this.playerSpriteSheet.animations[this.spriteDirection]
     );
+    
     this.playerTexture.animationSpeed = ANIMATION_SPEED;
     this.playerTexture.currentFrame = DEFAULT_FRAME;
     this.playerTexture.anchor.set(0.5);
     this.playerTexture.x = WIDTH / 2 - this.playerTexture.width;
     this.playerTexture.y = HEIGHT / 2 - this.playerTexture.height;
-
+    
     this.scene.addChild(this.playerTexture);
   }
 
