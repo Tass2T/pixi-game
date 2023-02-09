@@ -21,8 +21,8 @@ export default class SpriteManager {
       "explosion",
       "/src/assets/bullets/explosionSpriteSheetData.json"
     );
-    this.loader.add("bullet", "/src/assets/bullets/rocket.png")
-    this.loader.add("villain", "/src/assets/villain/villainSpriteSheet.json")
+    this.loader.add("bullet", "/src/assets/bullets/rocket.png");
+    this.loader.add("villain", "/src/assets/villain/villainSpriteSheet.json");
   };
 
   loadTextures = async () => {
@@ -31,16 +31,16 @@ export default class SpriteManager {
       "background",
       "explosion",
       "bullet",
-      "villain"
+      "villain",
     ]);
-    
+
     this.playerTexture = texturePromise.player;
     this.backgroundTexture = texturePromise.background;
     this.explosionTexture = texturePromise.explosion;
-    this.bulletTexture = texturePromise.bullet
-    this.villainTexture = texturePromise.villain
+    this.bulletTexture = texturePromise.bullet;
+    this.villainTexture = texturePromise.villain;
     this.isLoading = false;
-  }
+  };
 
   getTexture = (name) => {
     return this[name];
