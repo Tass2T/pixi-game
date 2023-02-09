@@ -11,10 +11,14 @@ import {
 import { Bullet } from "../Various/Bullets";
 import SpriteManager from "../Various/SpriteManager.js";
 
+let instance = null;
+
 export default class Player extends Character {
   constructor(scene) {
+    if (instance) return instance;
     super(scene);
-    this.spriteManager = new SpriteManager()
+    instance = this;
+    this.spriteManager = new SpriteManager();
     this.preparePlayer();
     this.keys = {};
     this.bullets = [];
@@ -28,16 +32,15 @@ export default class Player extends Character {
     this.playerTexture = new AnimatedSprite(
       this.playerSpriteSheet.animations[this.spriteDirection]
     );
-    
+
     this.playerTexture.animationSpeed = ANIMATION_SPEED;
     this.playerTexture.currentFrame = DEFAULT_FRAME;
     this.playerTexture.anchor.set(0.5);
     this.playerTexture.x = WIDTH / 2 - this.playerTexture.width;
     this.playerTexture.y = HEIGHT / 2 - this.playerTexture.height;
-    
+
     this.scene.addChild(this.playerTexture);
   }
- 
 
   updateSprite = () => {
     for (const [key, value] of Object.entries(CONTROLS)) {

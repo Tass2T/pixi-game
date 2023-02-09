@@ -2,7 +2,6 @@ import { TilingSprite } from "pixi.js";
 import Player from "./Characters/Player";
 import { HEIGHT, WIDTH } from "../utils/constants";
 import SpriteManager from "./Various/SpriteManager";
-import Villain from "./Characters/Villain";
 import VillainManager from "./Characters/VillainManager";
 
 export default class Game {
@@ -27,9 +26,9 @@ export default class Game {
     );
     this.scene.addChild(ground);
   }
-
   update() {
     this.player.update();
+    this.villainManager.update();
   }
 
   dispose() {}
