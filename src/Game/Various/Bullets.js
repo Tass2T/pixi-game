@@ -51,8 +51,8 @@ export class Bullet {
   explode = () => {
     this.sprite.destroy();
     this.sprite = this.explosionTexture;
-    this.sprite.x = this.destination.x - 45;
-    this.sprite.y = this.destination.y - 45;
+    this.sprite.x = this.destination.x;
+    this.sprite.y = this.destination.y;
     this.explosionTexture.gotoAndPlay(0);
     this.scene.addChild(this.sprite);
     this.explosionTexture.onComplete = () => {
