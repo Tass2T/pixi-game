@@ -1,9 +1,11 @@
 import { VILLAIN_SPAWN_DIRECTION } from "../../utils/constants";
+import Player from "./Player";
 import Villain from "./Villain";
 
 export default class VillainManager {
   constructor(scene) {
     this.scene = scene;
+    this.player = new Player();
     this.nbOfVillain = 1;
     this.villains = [
       new Villain(
@@ -13,5 +15,9 @@ export default class VillainManager {
     ];
   }
 
-  update = (x, y) => {};
+  update = () => {
+    this.villains.forEach((villain) => {
+      villain.update();
+    });
+  };
 }
