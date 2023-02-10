@@ -20,8 +20,8 @@ export class Bullet {
     };
     this.explosionTexture = this.prepareExplosion();
     this.sprite = Sprite.from(this.spriteManager.getTexture("bulletTexture"));
-    this.sprite.x = origin.x + 20;
-    this.sprite.y = origin.y + 20;
+    this.sprite.x = origin.x;
+    this.sprite.y = origin.y;
     this.sprite.anchor.set(0.5);
     const rotation = this.getRotation();
 
