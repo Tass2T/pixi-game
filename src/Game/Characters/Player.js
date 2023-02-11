@@ -14,9 +14,9 @@ import SpriteManager from "../Various/SpriteManager.js";
 let instance = null;
 
 export default class Player extends Character {
-  constructor(scene) {
+  constructor() {
     if (instance) return instance;
-    super(scene);
+    super();
     instance = this;
     this.spriteManager = new SpriteManager();
     this.preparePlayer();

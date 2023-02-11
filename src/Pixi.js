@@ -8,8 +8,12 @@ import SpriteManager from "./Game/Various/SpriteManager";
 gsap.registerPlugin(PixiPlugin);
 PixiPlugin.registerPIXI(PIXI);
 
+let instance = null
+
 export default class Pixi {
   constructor() {
+    if (instance) return instance
+    instance = this
     const gameArea = document.querySelector("#app");
     this.app = new PIXI.Application({
       width: WIDTH,

@@ -3,7 +3,7 @@ import gsap from "gsap";
 import SpriteManager from "./SpriteManager";
 
 export class Bullet {
-  constructor(origin, destination, scene, explosionTexture) {
+  constructor(origin, destination, scene) {
     this.scene = scene;
     this.spriteManager = new SpriteManager()
     this.origin = {

@@ -3,15 +3,18 @@ import Player from "./Characters/Player";
 import { HEIGHT, WIDTH } from "../utils/constants";
 import SpriteManager from "./Various/SpriteManager";
 import VillainManager from "./Characters/VillainManager";
+import { CollisionManager } from "./Various/CollisionManager";
+import Pixi from "../Pixi";
 
 export default class Game {
-  constructor(scene) {
-    this.scene = scene;
+  constructor() {
+    this.scene = new Pixi().scene;
     this.scene.interactive = true;
     this.spriteManager = new SpriteManager();
     this.prepareBackground();
     this.player = new Player(this.scene);
-    this.villainManager = new VillainManager(this.scene);
+    this.villainManager = new VillainManager();
+    this.collisionManager = new CollisionManager()
     this.scene.on("click", this.player.shoot);
   }
 
@@ -29,6 +32,7 @@ export default class Game {
   update() {
     this.player.update();
     this.villainManager.update();
+    this.collisionManager.update()
   }
 
   dispose() {}
