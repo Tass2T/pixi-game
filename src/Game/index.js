@@ -14,7 +14,7 @@ export default class Game {
     this.prepareBackground();
     this.player = new Player(this.scene);
     this.villainManager = new VillainManager();
-    this.collisionManager = new CollisionManager()
+    this.collisionManager = new CollisionManager(this.player, this.villainManager)
     this.scene.on("click", this.player.shoot);
   }
 

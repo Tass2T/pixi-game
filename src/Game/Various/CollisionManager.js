@@ -3,9 +3,9 @@ import VillainManager from "../Characters/villainManager";
 
 
 export class CollisionManager {
-    constructor() {
-        this.player = new Player()
-        this.villainManager = new VillainManager()
+    constructor(player, villainManager) {
+        this.player = player
+        this.villainManager = villainManager
     }
 
     update() {
