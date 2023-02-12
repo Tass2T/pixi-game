@@ -55,11 +55,10 @@ export class Bullet {
     this.sprite = this.explosionTexture;
     this.sprite.x = this.destination.x;
     this.sprite.y = this.destination.y;
-    this.explosionTexture.gotoAndPlay(0);
     this.scene.addChild(this.sprite);
+    this.explosionTexture.gotoAndPlay(0);
     this.explosionTexture.onComplete = () => {
-      this.scene.removeChild(this.sprite);
-      this.player.bullets = this.player.bullets.filter((item) => item !== this);
+      this.dispose();
     };
   };
 
@@ -74,4 +73,9 @@ export class Bullet {
     this.explosionTexture.loop = false;
     this.explosionTexture.anchor.set(0.5);
   };
+
+  dispose() {
+    this.scene.removeChild(this.sprite);
+    this.player.bullets = this.player.bullets.filter((item) => item !== this);
+  }
 }
