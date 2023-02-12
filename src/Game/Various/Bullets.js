@@ -1,11 +1,13 @@
 import { Sprite, AnimatedSprite } from "pixi.js";
 import gsap from "gsap";
 import SpriteManager from "./SpriteManager";
+import Player from "../Characters/Player";
 
 export class Bullet {
   constructor(origin, destination, scene) {
     this.scene = scene;
-    this.spriteManager = new SpriteManager()
+    this.player = new Player();
+    this.spriteManager = new SpriteManager();
     this.origin = {
       x: origin.x,
       y: origin.y,
@@ -57,20 +59,19 @@ export class Bullet {
     this.scene.addChild(this.sprite);
     this.explosionTexture.onComplete = () => {
       this.scene.removeChild(this.sprite);
-      delete this;
+      this.player.bullets = this.player.bullets.filter((item) => item !== this);
     };
   };
 
-  prepareExplosion =async ()=> {
-    this.explosionSheet = this.spriteManager.getTexture("explosionTexture")
-    
-    this.explosionTexture =await  new AnimatedSprite(
+  prepareExplosion = async () => {
+    this.explosionSheet = this.spriteManager.getTexture("explosionTexture");
+
+    this.explosionTexture = await new AnimatedSprite(
       this.explosionSheet.animations.explosion
     );
 
     this.explosionTexture.animationSpeed = 0.3;
     this.explosionTexture.loop = false;
     this.explosionTexture.anchor.set(0.5);
-
-  }
+  };
 }
