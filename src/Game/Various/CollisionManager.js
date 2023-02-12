@@ -15,8 +15,7 @@ export class CollisionManager {
     this.player.bullets.forEach((bullet) => {
       const bulletBounds = bullet.sprite.getBounds();
       this.villainManager.villains.forEach((villain) => {
-        const villainBounds = villain.sprite.getBounds();
-        if (this.hitTestRectangle(bulletBounds, villainBounds)) {
+        if (this.hitTestRectangle(bulletBounds, villain.hitbox)) {
           bullet.dispose();
           villain.dies();
           this.villainManager.addVilain(villain)
