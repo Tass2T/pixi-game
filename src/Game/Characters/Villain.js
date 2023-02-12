@@ -47,6 +47,13 @@ export default class Villain extends Character {
     }
   };
 
+  revive() {
+    const originDirection = VILLAIN_SPAWN_DIRECTION[Math.floor(Math.random() * 4)]
+    this.setPosition(originDirection);
+    this.isDead = false
+    this.sprite.visible = true
+  }
+
   dies() {
     this.isDead = true;
     this.sprite.visible = false;

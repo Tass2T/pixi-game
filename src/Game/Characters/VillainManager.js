@@ -18,7 +18,13 @@ export default class VillainManager {
     ];
   }
 
-  update = () => {
+  addVilain(villainToRevive = null) {
+    console.log(villainToRevive);
+    if (villainToRevive) villainToRevive.prepareSprite()
+    if (this.villains.length <= 20) this.villains.push(new Villain(this.scene))
+  }
+
+  update () {
     // this.villains.forEach((villain) => {
     //   villain.update();
     // });

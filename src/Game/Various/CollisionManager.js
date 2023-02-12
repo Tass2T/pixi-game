@@ -19,6 +19,7 @@ export class CollisionManager {
         if (this.hitTestRectangle(bulletBounds, villainBounds)) {
           bullet.dispose();
           villain.dies();
+          this.villainManager.addVilain(villain)
         }
       });
     });
