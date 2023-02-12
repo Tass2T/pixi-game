@@ -75,6 +75,7 @@ export class Bullet {
   };
 
   dispose() {
+    this.timeline.pause()
     this.scene.removeChild(this.sprite);
     this.player.bullets = this.player.bullets.filter((item) => item !== this);
   }
