@@ -47,5 +47,10 @@ export default class Villain extends Character {
     }
   };
 
+  dies() {
+    this.isDead = true;
+    this.sprite.visible = false;
+  }
+
   update = (x, y) => {};
 }
