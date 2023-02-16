@@ -1,6 +1,3 @@
-import Player from "../Characters/Player";
-import VillainManager from "../Characters/villainManager";
-
 export class CollisionManager {
   constructor(player, villainManager) {
     this.player = player;
