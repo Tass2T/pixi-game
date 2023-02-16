@@ -5,17 +5,24 @@ export class CollisionManager {
   }
 
   update() {
-    this.checkMissilesImpacts();
+    this.checkImpacts();
   }
 
-  checkMissilesImpacts() {
-    this.player.bullets.forEach((bullet) => {
-      const bulletBounds = bullet.sprite.getBounds();
-      this.villainManager.villains.forEach((villain) => {
-        if (this.hitTestRectangle(bulletBounds, villain.hitbox)) {
+  checkImpacts() {
+    this.villainManager.villains.forEach((villain) => {
+      if (
+        this.hitTestRectangle(villain.hitbox, this.player.sprite.getBounds())
+      ) {
+        this.player.isDead = true;
+        console.log("player is dead");
+      }
+
+      this.player.bullets.forEach((bullet) => {
+        if (this.hitTestRectangle(villain.hitbox, bullet.sprite.getBounds())) {
           bullet.dispose();
           villain.dies();
           this.villainManager.addVilain(villain);
+          this.villainManager.villain_speed += 0.01;
         }
       });
     });

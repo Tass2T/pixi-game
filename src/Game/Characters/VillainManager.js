@@ -1,4 +1,5 @@
 import Pixi from "../../Pixi";
+import { MAX_NUMBER_OF_VILLAIN } from "../../utils/constants";
 
 import Player from "./Player";
 import Villain from "./Villain";
@@ -11,13 +12,14 @@ export default class VillainManager {
     this.scene = new Pixi().scene;
     this.player = new Player();
     this.nbOfVillain = 1;
-    this.villains = [new Villain(this.scene)];
+    this.villain_speed = 0.6;
+    this.villains = [new Villain(this.scene, this.villain_speed)];
   }
 
   addVilain(villainToRevive = null) {
-    console.log(villainToRevive);
-    if (villainToRevive) villainToRevive.prepareSprite();
-    if (this.villains.length <= 20) this.villains.push(new Villain(this.scene));
+    if (villainToRevive) villainToRevive.prepareSprite(this.villain_speed);
+    if (this.villains.length <= MAX_NUMBER_OF_VILLAIN)
+      this.villains.push(new Villain(this.scene, this.villain_speed));
   }
 
   update() {
