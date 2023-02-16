@@ -1,4 +1,4 @@
-import { Sprite, AnimatedSprite } from "pixi.js";
+import { Sprite, Rectangle } from "pixi.js";
 import gsap from "gsap";
 import SpriteManager from "./SpriteManager";
 import Player from "../Characters/Player";
@@ -23,9 +23,11 @@ export class Bullet {
     };
     this.sprite = Sprite.from(this.spriteManager.getTexture("bulletTexture"));
     this.sprite.x = origin.x;
+    this.hitbox = new Rectangle();
     this.sprite.y = origin.y;
     this.sprite.anchor.set(0.5);
     this.rotation = this.getRadianRotation();
+    this.setHitBox();
     gsap.to(this.sprite, {
       pixi: { rotation: this.getAngleRotation() },
       duration: 0,
@@ -47,6 +49,14 @@ export class Bullet {
     return Math.round(rad * (180 / Math.PI));
   };
 
+  setHitBox = () => {
+    const bounds = this.sprite.getBounds();
+    this.hitbox.x = bounds.x + 15;
+    this.hitbox.y = bounds.y + 20;
+    this.hitbox.width = bounds.width - 30;
+    this.hitbox.height = bounds.height - 40;
+  };
+
   update = () => {
     if (
       this.sprite.x < 0 ||
@@ -58,6 +68,7 @@ export class Bullet {
     }
     this.sprite.position.x += Math.cos(this.rotation) * BULLET_SPEED;
     this.sprite.position.y += Math.sin(this.rotation) * BULLET_SPEED;
+    this.setHitBox();
   };
 
   dispose = () => {

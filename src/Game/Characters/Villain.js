@@ -59,10 +59,10 @@ export default class Villain extends Character {
 
   setHitbox() {
     const bounds = this.sprite.getBounds();
-    this.hitbox.x = bounds.x + 20;
-    this.hitbox.y = bounds.y;
-    this.hitbox.height = bounds.height;
-    this.hitbox.width = bounds.width / 2;
+    this.hitbox.x = bounds.x + 27;
+    this.hitbox.y = bounds.y + 12;
+    this.hitbox.height = bounds.height - 24;
+    this.hitbox.width = bounds.width - 54;
   }
 
   revive() {
