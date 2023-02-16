@@ -88,6 +88,10 @@ export default class Player extends Character {
       this.playerTexture.x -= CHARACTER_SPEED;
     if (this.keys[CONTROLS.RIGHT] && this.playerTexture.x <= WIDTH - 45)
       this.playerTexture.x += CHARACTER_SPEED;
+
+    this.bullets.forEach((bullet) => {
+      bullet.update();
+    });
   }
 
   dispose() {
