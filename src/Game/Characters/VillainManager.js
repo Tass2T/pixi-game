@@ -11,22 +11,18 @@ export default class VillainManager {
     this.scene = new Pixi().scene;
     this.player = new Player();
     this.nbOfVillain = 1;
-    this.villains = [
-      new Villain(
-        this.scene
-      ),
-    ];
+    this.villains = [new Villain(this.scene)];
   }
 
   addVilain(villainToRevive = null) {
     console.log(villainToRevive);
-    if (villainToRevive) villainToRevive.prepareSprite()
-    if (this.villains.length <= 20) this.villains.push(new Villain(this.scene))
+    if (villainToRevive) villainToRevive.prepareSprite();
+    if (this.villains.length <= 20) this.villains.push(new Villain(this.scene));
   }
 
-  update () {
-    // this.villains.forEach((villain) => {
-    //   villain.update();
-    // });
-  };
+  update() {
+    this.villains.forEach((villain) => {
+      villain.update(this.player.sprite.x, this.player.sprite.y);
+    });
+  }
 }

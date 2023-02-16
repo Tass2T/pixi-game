@@ -1,14 +1,14 @@
-import { AnimatedSprite, Graphics, Rectangle } from "pixi.js";
+import { AnimatedSprite, Rectangle } from "pixi.js";
 import { HEIGHT, WIDTH } from "../../utils/constants";
 import SpriteManager from "../Various/SpriteManager";
-import { VILLAIN_SPAWN_DIRECTION } from "../../utils/constants";
+import { VILLAIN_SPAWN_DIRECTION, VILLAIN_SPEED } from "../../utils/constants";
 import Character from "./Character";
 
 export default class Villain extends Character {
   constructor(scene) {
     super(scene);
     this.spriteManager = new SpriteManager();
-    this.hitbox = new Rectangle()
+    this.hitbox = new Rectangle();
     this.prepareSprite();
     this.destination = {
       x: 0,
@@ -17,15 +17,15 @@ export default class Villain extends Character {
   }
 
   prepareSprite = () => {
-    
-    const originDirection = VILLAIN_SPAWN_DIRECTION[Math.floor(Math.random() * 4)]
+    const originDirection =
+      VILLAIN_SPAWN_DIRECTION[Math.floor(Math.random() * 4)];
     this.sheet = this.spriteManager.getTexture("villainTexture");
     this.sprite = new AnimatedSprite(
       this.sheet.animations[originDirection.toLowerCase()]
     );
     this.sprite.anchor.set(0.5);
     this.setPosition(originDirection);
-    this.setHitbox()    
+    this.setHitbox();
     this.scene.addChild(this.sprite);
   };
 
@@ -51,19 +51,20 @@ export default class Villain extends Character {
   };
 
   setHitbox() {
-    const bounds = this.sprite.getBounds()
-    this.hitbox.x = bounds.x + 20
-    this.hitbox.y = bounds.y
-    this.hitbox.height = bounds.height
-    this.hitbox.width = bounds.width /2
+    const bounds = this.sprite.getBounds();
+    this.hitbox.x = bounds.x + 20;
+    this.hitbox.y = bounds.y;
+    this.hitbox.height = bounds.height;
+    this.hitbox.width = bounds.width / 2;
   }
 
   revive() {
-    const originDirection = VILLAIN_SPAWN_DIRECTION[Math.floor(Math.random() * 4)]
+    const originDirection =
+      VILLAIN_SPAWN_DIRECTION[Math.floor(Math.random() * 4)];
     this.setPosition(originDirection);
-    this.setHitbox()
-    this.isDead = false
-    this.sprite.visible = true
+    this.setHitbox();
+    this.isDead = false;
+    this.sprite.visible = true;
   }
 
   dies() {
@@ -71,5 +72,11 @@ export default class Villain extends Character {
     this.sprite.visible = false;
   }
 
-  update = (x, y) => {};
+  update = (x, y) => {
+    const vectorX = x - this.sprite.x;
+    const vectorY = y - this.sprite.y;
+    const distance = Math.sqrt(Math.pow(vectorX, 2) + Math.pow(vectorY, 2));
+    this.sprite.x += (vectorX / distance) * VILLAIN_SPEED;
+    this.sprite.y += (vectorY / distance) * VILLAIN_SPEED;
+  };
 }

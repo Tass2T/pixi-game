@@ -29,29 +29,29 @@ export default class Player extends Character {
 
   async preparePlayer() {
     this.playerSpriteSheet = this.spriteManager.getTexture("playerTexture");
-    this.playerTexture = new AnimatedSprite(
+    this.sprite = new AnimatedSprite(
       this.playerSpriteSheet.animations[this.spriteDirection]
     );
 
-    this.playerTexture.animationSpeed = ANIMATION_SPEED;
-    this.playerTexture.currentFrame = DEFAULT_FRAME;
-    this.playerTexture.anchor.set(0.5);
-    this.playerTexture.x = WIDTH / 2 - this.playerTexture.width;
-    this.playerTexture.y = HEIGHT / 2 - this.playerTexture.height;
+    this.sprite.animationSpeed = ANIMATION_SPEED;
+    this.sprite.currentFrame = DEFAULT_FRAME;
+    this.sprite.anchor.set(0.5);
+    this.sprite.x = WIDTH / 2 - this.sprite.width;
+    this.sprite.y = HEIGHT / 2 - this.sprite.height;
 
-    this.scene.addChild(this.playerTexture);
+    this.scene.addChild(this.sprite);
   }
 
   updateSprite = () => {
     for (const [key, value] of Object.entries(CONTROLS)) {
       if (this.keys[value]) {
-        this.playerTexture.textures =
+        this.sprite.textures =
           this.playerSpriteSheet.animations[key.toLowerCase()];
-        this.playerTexture.play();
+        this.sprite.play();
         return;
       }
 
-      this.playerTexture.stop();
+      this.sprite.stop();
     }
   };
 
@@ -72,7 +72,7 @@ export default class Player extends Character {
 
   shoot = (e) => {
     const pos = e.data.global;
-    const origin = { x: this.playerTexture.x, y: this.playerTexture.y };
+    const origin = { x: this.sprite.x, y: this.sprite.y };
     const destination = { x: pos.x, y: pos.y };
     this.bullets.push(
       new Bullet(origin, destination, this.scene, this.explosionTexture)
@@ -80,14 +80,14 @@ export default class Player extends Character {
   };
 
   update() {
-    if (this.keys[CONTROLS.DOWN] && this.playerTexture.y <= HEIGHT - 52)
-      this.playerTexture.y += CHARACTER_SPEED;
-    if (this.keys[CONTROLS.UP] && this.playerTexture.y >= 0)
-      this.playerTexture.y -= CHARACTER_SPEED;
-    if (this.keys[CONTROLS.LEFT] && this.playerTexture.x >= 0)
-      this.playerTexture.x -= CHARACTER_SPEED;
-    if (this.keys[CONTROLS.RIGHT] && this.playerTexture.x <= WIDTH - 45)
-      this.playerTexture.x += CHARACTER_SPEED;
+    if (this.keys[CONTROLS.DOWN] && this.sprite.y <= HEIGHT - 52)
+      this.sprite.y += CHARACTER_SPEED;
+    if (this.keys[CONTROLS.UP] && this.sprite.y >= 0)
+      this.sprite.y -= CHARACTER_SPEED;
+    if (this.keys[CONTROLS.LEFT] && this.sprite.x >= 0)
+      this.sprite.x -= CHARACTER_SPEED;
+    if (this.keys[CONTROLS.RIGHT] && this.sprite.x <= WIDTH - 45)
+      this.sprite.x += CHARACTER_SPEED;
 
     this.bullets.forEach((bullet) => {
       bullet.update();

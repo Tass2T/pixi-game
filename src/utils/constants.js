@@ -11,3 +11,4 @@ export const CONTROLS = {
   RIGHT: 68,
 };
 export const VILLAIN_SPAWN_DIRECTION = ["UP", "DOWN", "LEFT", "RIGHT"];
+export const VILLAIN_SPEED = 0.5;
