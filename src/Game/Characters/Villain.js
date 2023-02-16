@@ -78,5 +78,6 @@ export default class Villain extends Character {
     const distance = Math.sqrt(Math.pow(vectorX, 2) + Math.pow(vectorY, 2));
     this.sprite.x += (vectorX / distance) * VILLAIN_SPEED;
     this.sprite.y += (vectorY / distance) * VILLAIN_SPEED;
+    this.setHitbox();
   };
 }
