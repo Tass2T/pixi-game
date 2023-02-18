@@ -36,8 +36,8 @@ export default class Player extends Character {
     this.sprite.animationSpeed = ANIMATION_SPEED;
     this.sprite.currentFrame = DEFAULT_FRAME;
     this.sprite.anchor.set(0.5);
-    this.sprite.x = WIDTH / 2 - this.sprite.width;
-    this.sprite.y = HEIGHT / 2 - this.sprite.height;
+    this.sprite.x = WIDTH / 2 - this.sprite.width / 2;
+    this.sprite.y = HEIGHT / 2 - this.sprite.height / 2;
 
     this.scene.addChild(this.sprite);
   }

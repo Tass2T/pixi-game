@@ -1,91 +1,91 @@
 {
   "frames": {
     "player_down1": {
-      "frame": { "x": 0, "y": 0, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 0, "y": 0, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     },
     "player_down2": {
-      "frame": { "x": 460, "y": 0, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 0, "y": 500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     },
     "player_down3": {
-      "frame": { "x": 920, "y": 0, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 0, "y": 1000, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     },
     "player_down4": {
-      "frame": { "x": 1380, "y": 0, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 0, "y": 1500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     },
     "player_right1": {
-      "frame": { "x": 0, "y": 590, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 500, "y": 0, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     },
     "player_right2": {
-      "frame": { "x": 460, "y": 590, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 500, "y": 500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     },
     "player_right3": {
-      "frame": { "x": 920, "y": 590, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 500, "y": 1000, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     },
     "player_right4": {
-      "frame": { "x": 1380, "y": 590, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 500, "y": 1500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     },
     "player_left1": {
-      "frame": { "x": 0, "y": 1185, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 1000, "y": 0, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     },
     "player_left2": {
-      "frame": { "x": 460, "y": 1185, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 1000, "y": 500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     },
     "player_left3": {
-      "frame": { "x": 920, "y": 1185, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 1000, "y": 1000, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     },
     "player_left4": {
-      "frame": { "x": 1380, "y": 1185, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 1000, "y": 1500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     },
     "player_up1": {
-      "frame": { "x": 0, "y": 1810, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 1500, "y": 0, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     },
     "player_up2": {
-      "frame": { "x": 460, "y": 1810, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 1500, "y": 500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     },
     "player_up3": {
-      "frame": { "x": 920, "y": 1810, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 1500, "y": 1000, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     },
     "player_up4": {
-      "frame": { "x": 1380, "y": 1810, "w": 460, "h": 590 },
-      "sourceSize": { "w": 460, "h": 590 },
-      "spriteSourceSize": { "x": 0, "y": 0, "w": 460, "h": 590 }
+      "frame": { "x": 1500, "y": 1500, "w": 500, "h": 500 },
+      "sourceSize": { "w": 500, "h": 500 },
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 500, "h": 500 }
     }
   },
   "meta": {
     "image": "./playerSpriteSheet.png",
     "format": "RGBA8888",
-    "size": { "w": 1080, "h": 12 },
-    "scale": 10
+    "size": { "w": 2000, "h": 2000 },
+    "scale": 6
   },
   "animations": {
     "down": ["player_down1", "player_down2", "player_down3", "player_down4"],
