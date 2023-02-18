@@ -1,4 +1,4 @@
-import { Sprite, Rectangle } from "pixi.js";
+import { Rectangle, Sprite } from "pixi.js";
 import gsap from "gsap";
 import SpriteManager from "./SpriteManager";
 import Player from "../Characters/Player";
@@ -22,10 +22,11 @@ export class Bullet {
       y: origin.y,
     };
     this.sprite = Sprite.from(this.spriteManager.getTexture("bulletTexture"));
+    this.sprite.scale.set(0.27);
+    this.sprite.anchor.set(0.5);
     this.sprite.x = origin.x;
     this.hitbox = new Rectangle();
     this.sprite.y = origin.y;
-    this.sprite.anchor.set(0.5);
     this.rotation = this.getRadianRotation();
     this.setHitBox();
     gsap.to(this.sprite, {

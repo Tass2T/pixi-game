@@ -1,4 +1,4 @@
-import { Assets, Texture } from "pixi.js";
+import { Assets, Sprite } from "pixi.js";
 
 let instance = null;
 
@@ -21,7 +21,7 @@ export default class SpriteManager {
       "explosion",
       "/src/assets/bullets/explosionSpriteSheetData.json"
     );
-    this.loader.add("bullet", "/src/assets/bullets/rocket.png");
+    this.loader.add("bullet", "/src/assets/bullets/stake.png");
     this.loader.add("villain", "/src/assets/villain/villainSpriteSheet.json");
   };
 
