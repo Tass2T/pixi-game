@@ -14,7 +14,6 @@ export class CollisionManager {
         this.hitTestRectangle(villain.hitbox, this.player.sprite.getBounds())
       ) {
         this.player.isDead = true;
-        console.log("player is dead");
       }
 
       this.player.bullets.forEach((bullet) => {
