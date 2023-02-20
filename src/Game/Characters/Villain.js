@@ -70,13 +70,19 @@ export default class Villain extends Character {
       VILLAIN_SPAWN_DIRECTION[Math.floor(Math.random() * 4)];
     this.setPosition(originDirection);
     this.setHitbox();
+    this.sprite = this.sheet.animations[originDirection.toLowerCase()];
     this.isDead = false;
     this.sprite.visible = true;
   }
 
   dies() {
     this.isDead = true;
-    this.sprite.visible = false;
+    this.sprite.textures = this.sheet.animations.death;
+    this.sprite.animationSpeed = 0.15;
+    this.sprite.loop = false;
+    this.sprite.play();
+    // this.sprite.onComplete = () => {
+    // };
   }
 
   update = (x, y) => {
