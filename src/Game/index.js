@@ -1,51 +1,14 @@
-import { Sprite } from "pixi.js";
 import Player from "./Characters/Player";
 import {
   BACKGROUND_SPRITE_SIZE,
   BACKGROUND_SPRITE_NUMBER,
+  BACKGROUND_SPRITE_KIND_NUMBER,
 } from "../utils/constants";
 import SpriteManager from "./Various/SpriteManager";
 import VillainManager from "./Characters/VillainManager";
 import { CollisionManager } from "./Various/CollisionManager";
 import Pixi from "../Pixi";
-
-const level = [
-  [
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-  ],
-  [
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-  ],
-  [
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-  ],
-  [
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-  ],
-  [
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-    Math.floor(Math.random() * BACKGROUND_SPRITE_NUMBER),
-  ],
-];
+import { Sprite } from "pixi.js";
 
 export default class Game {
   constructor() {
@@ -70,17 +33,21 @@ export default class Game {
     let x = 0;
     let y = 0;
 
-    level.forEach((line) => {
+    for (let i = 0; i < BACKGROUND_SPRITE_NUMBER; i++) {
       x = 0;
-      line.forEach((element) => {
-        const sprite = Sprite.from(this.backgroundTextures.textures[element]);
+      for (let j = 0; j < BACKGROUND_SPRITE_NUMBER; j++) {
+        const sprite = Sprite.from(
+          this.backgroundTextures.textures[
+            Math.floor(Math.random() * BACKGROUND_SPRITE_KIND_NUMBER)
+          ]
+        );
         sprite.x = x;
         sprite.y = y;
         this.scene.addChild(sprite);
         x += BACKGROUND_SPRITE_SIZE;
-      });
+      }
       y += BACKGROUND_SPRITE_SIZE;
-    });
+    }
   }
   update = () => {
     this.state();

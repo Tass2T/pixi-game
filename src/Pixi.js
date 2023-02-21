@@ -15,10 +15,16 @@ export default class Pixi {
     if (instance) return instance;
     instance = this;
     const gameArea = document.querySelector("#app");
+    const scale = window.devicePixelRatio;
     this.app = new PIXI.Application({
       width: WIDTH,
       height: HEIGHT,
       backgroundColor: 0x000000,
+      renderer: PIXI.autoDetectRenderer(
+        WIDTH * scale,
+        HEIGHT * scale,
+        gameArea
+      ),
     });
     this.spriteManager = new SpriteManager();
 
