@@ -12,7 +12,7 @@ export const CONTROLS = {
 };
 export const VILLAIN_SPAWN_DIRECTION = ["UP", "DOWN", "LEFT", "RIGHT"];
 export const VILLAIN_SPEED = 0.8;
-export const MAX_NUMBER_OF_VILLAIN = 35;
+export const MAX_NUMBER_OF_VILLAIN = 25;
 
 // LEVEL
 export const BACKGROUND_SPRITE_SIZE = 270;
