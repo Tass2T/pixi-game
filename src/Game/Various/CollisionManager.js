@@ -9,22 +9,24 @@ export class CollisionManager {
   }
 
   checkImpacts() {
-    this.villainManager.villains.forEach((villain) => {
-      if (
-        this.hitTestRectangle(villain.hitbox, this.player.sprite.getBounds())
-      ) {
-        this.player.isDead = true;
-      }
-
-      this.player.bullets.forEach((bullet) => {
-        if (this.hitTestRectangle(villain.hitbox, bullet.hitbox)) {
-          bullet.dispose();
-          villain.dies();
-          this.villainManager.addVilain(villain);
-          this.villainManager.villain_speed += 0.01;
+    this.villainManager.villains
+      .filter((villain) => !villain.isDead)
+      .forEach((villain) => {
+        if (
+          this.hitTestRectangle(villain.hitbox, this.player.sprite.getBounds())
+        ) {
+          this.player.isDead = true;
         }
+
+        this.player.bullets.forEach((bullet) => {
+          if (this.hitTestRectangle(villain.hitbox, bullet.hitbox)) {
+            bullet.dispose();
+            villain.dies();
+            this.villainManager.addVilain();
+            this.villainManager.villain_speed += 0.01;
+          }
+        });
       });
-    });
   }
 
   hitTestRectangle(r1, r2) {

@@ -57,23 +57,26 @@ export default class Villain extends Character {
     }
   };
 
-  setHitbox() {
+  setHitbox = () => {
     const bounds = this.sprite.getBounds();
     this.hitbox.x = bounds.x + 27;
     this.hitbox.y = bounds.y + 12;
     this.hitbox.height = bounds.height - 24;
     this.hitbox.width = bounds.width - 54;
-  }
+  };
 
-  revive() {
+  revive = () => {
     const originDirection =
       VILLAIN_SPAWN_DIRECTION[Math.floor(Math.random() * 4)];
+    this.sprite.textures = this.sheet.animations[originDirection.toLowerCase()];
+    this.sprite.loop = true;
+    this.sprite.gotoAndPlay(0);
     this.setPosition(originDirection);
-    this.setHitbox();
-    this.sprite = this.sheet.animations[originDirection.toLowerCase()];
     this.isDead = false;
     this.sprite.visible = true;
-  }
+
+    this.setHitbox();
+  };
 
   dies() {
     this.isDead = true;
@@ -81,16 +84,19 @@ export default class Villain extends Character {
     this.sprite.animationSpeed = 0.15;
     this.sprite.loop = false;
     this.sprite.play();
-    // this.sprite.onComplete = () => {
-    // };
+    this.sprite.onComplete = () => {
+      this.revive();
+    };
   }
 
   update = (x, y) => {
-    const vectorX = x - this.sprite.x;
-    const vectorY = y - this.sprite.y;
-    const distance = Math.sqrt(Math.pow(vectorX, 2) + Math.pow(vectorY, 2));
-    this.sprite.x += (vectorX / distance) * this.speed;
-    this.sprite.y += (vectorY / distance) * this.speed;
-    this.setHitbox();
+    if (!this.isDead) {
+      const vectorX = x - this.sprite.x;
+      const vectorY = y - this.sprite.y;
+      const distance = Math.sqrt(Math.pow(vectorX, 2) + Math.pow(vectorY, 2));
+      this.sprite.x += (vectorX / distance) * this.speed;
+      this.sprite.y += (vectorY / distance) * this.speed;
+      this.setHitbox();
+    }
   };
 }

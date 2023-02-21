@@ -16,8 +16,7 @@ export default class VillainManager {
     this.villains = [new Villain(this.scene, this.villain_speed)];
   }
 
-  addVilain(villainToRevive = null) {
-    if (villainToRevive) villainToRevive.prepareSprite(this.villain_speed);
+  addVilain() {
     if (this.villains.length <= MAX_NUMBER_OF_VILLAIN)
       this.villains.push(new Villain(this.scene, this.villain_speed));
   }
