@@ -10,6 +10,7 @@ import {
 } from "../../utils/constants.js";
 import { Bullet } from "../Various/Bullets";
 import SpriteManager from "../Various/SpriteManager.js";
+import InputManager from "../Various/InputManager";
 
 let instance = null;
 
@@ -19,12 +20,10 @@ export default class Player extends Character {
     super();
     instance = this;
     this.spriteManager = new SpriteManager();
+    this.inputManager = new InputManager();
     this.preparePlayer();
-    this.keys = {};
     this.bullets = [];
-
-    window.addEventListener("keydown", this.manageInput);
-    window.addEventListener("keyup", this.manageInput);
+    this.scene.on("click", this.shoot);
   }
 
   async preparePlayer() {
@@ -44,7 +43,7 @@ export default class Player extends Character {
 
   updateSprite = () => {
     for (const [key, value] of Object.entries(CONTROLS)) {
-      if (this.keys[value]) {
+      if (this.inputManager.keys[value]) {
         this.sprite.textures =
           this.playerSpriteSheet.animations[key.toLowerCase()];
         this.sprite.play();
@@ -53,21 +52,6 @@ export default class Player extends Character {
 
       this.sprite.stop();
     }
-  };
-
-  manageInput = (e) => {
-    if (e.repeat) return;
-    switch (e.type) {
-      case "keydown":
-        this.keys[e.keyCode] = true;
-        break;
-      case "keyup":
-        this.keys[e.keyCode] = false;
-        break;
-      default:
-        break;
-    }
-    this.updateSprite();
   };
 
   shoot = (e) => {
@@ -80,13 +64,14 @@ export default class Player extends Character {
   };
 
   update() {
-    if (this.keys[CONTROLS.DOWN] && this.sprite.y <= HEIGHT - 52)
+    this.updateSprite();
+    if (this.inputManager.keys[CONTROLS.DOWN] && this.sprite.y <= HEIGHT - 52)
       this.sprite.y += CHARACTER_SPEED;
-    if (this.keys[CONTROLS.UP] && this.sprite.y >= 0)
+    if (this.inputManager.keys[CONTROLS.UP] && this.sprite.y >= 0)
       this.sprite.y -= CHARACTER_SPEED;
-    if (this.keys[CONTROLS.LEFT] && this.sprite.x >= 0)
+    if (this.inputManager.keys[CONTROLS.LEFT] && this.sprite.x >= 0)
       this.sprite.x -= CHARACTER_SPEED;
-    if (this.keys[CONTROLS.RIGHT] && this.sprite.x <= WIDTH - 45)
+    if (this.inputManager.keys[CONTROLS.RIGHT] && this.sprite.x <= WIDTH - 45)
       this.sprite.x += CHARACTER_SPEED;
 
     this.bullets.forEach((bullet) => {
@@ -94,8 +79,5 @@ export default class Player extends Character {
     });
   }
 
-  dispose() {
-    window.removeEventListener("keydown", this.manageInput);
-    window.removeEventListener("keyup", this.manageInput);
-  }
+  dispose() {}
 }

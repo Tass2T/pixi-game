@@ -3,18 +3,21 @@ import {
   BACKGROUND_SPRITE_SIZE,
   BACKGROUND_SPRITE_NUMBER,
   BACKGROUND_SPRITE_KIND_NUMBER,
+  MENU,
 } from "../utils/constants";
 import SpriteManager from "./Various/SpriteManager";
 import VillainManager from "./Characters/VillainManager";
 import { CollisionManager } from "./Various/CollisionManager";
 import Pixi from "../Pixi";
 import { Sprite } from "pixi.js";
+import InputManager from "./Various/InputManager";
 
 export default class Game {
   constructor() {
     this.scene = new Pixi().scene;
     this.scene.interactive = true;
     this.spriteManager = new SpriteManager();
+    this.inputManager = new InputManager();
     this.prepareBackground();
     this.player = new Player(this.scene);
     this.villainManager = new VillainManager();
@@ -23,7 +26,6 @@ export default class Game {
       this.villainManager
     );
     this.state = this.game;
-    this.scene.on("click", this.player.shoot);
   }
 
   async prepareBackground() {
@@ -54,9 +56,11 @@ export default class Game {
   };
 
   game = () => {
-    this.player.update();
-    this.villainManager.update();
-    this.collisionManager.update();
+    if (!this.inputManager.keys[MENU.PAUSE]) {
+      this.player.update();
+      this.villainManager.update();
+      this.collisionManager.update();
+    }
   };
 
   dispose() {}
