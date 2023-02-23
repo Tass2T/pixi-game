@@ -8,11 +8,11 @@ import {
 import SpriteManager from "./Managers/SpriteManager";
 import VillainManager from "./Characters/VillainManager";
 import { CollisionManager } from "./Managers/CollisionManager";
-import Pixi from "../Pixi";
+import Pixi from "../App";
 import { Sprite } from "pixi.js";
 import InputManager from "./Managers/InputManager";
 
-export default class Game {
+export default class OldGame {
   constructor() {
     this.scene = new Pixi().scene;
     this.scene.interactive = true;
