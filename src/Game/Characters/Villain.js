@@ -1,6 +1,6 @@
 import { AnimatedSprite, Rectangle } from "pixi.js";
 import { HEIGHT, WIDTH } from "../../utils/constants";
-import SpriteManager from "../Various/SpriteManager";
+import SpriteManager from "../Managers/SpriteManager";
 import {
   VILLAIN_SPAWN_DIRECTION,
   ANIMATION_SPEED,

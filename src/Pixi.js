@@ -1,19 +1,14 @@
 import * as PIXI from "pixi.js";
-import Game from "./Game";
 import { HEIGHT, WIDTH } from "./utils/constants";
 import gsap from "gsap";
 import PixiPlugin from "gsap/PixiPlugin";
-import SpriteManager from "./Game/Various/SpriteManager";
+import SpriteManager from "./Game/Managers/SpriteManager";
 
 gsap.registerPlugin(PixiPlugin);
 PixiPlugin.registerPIXI(PIXI);
 
-let instance = null;
-
-export default class Pixi {
+export default class App {
   constructor() {
-    if (instance) return instance;
-    instance = this;
     const gameArea = document.querySelector("#app");
     const scale = window.devicePixelRatio;
     this.app = new PIXI.Application({
@@ -27,18 +22,14 @@ export default class Pixi {
       ),
     });
     this.spriteManager = new SpriteManager();
+    this.scene = this.app.stage;
+    gameArea.appendChild(this.app.view);
 
     // use gsap ticker instead
     this.app.ticker.stop();
-
     gsap.ticker.add(() => {
       this.app.ticker.update();
     });
-    this.scene = this.app.stage;
-    this.scene.interactive = true;
-    gameArea.appendChild(this.app.view);
-
-    this.init();
     let elapsed = 0.0;
     this.app.ticker.maxFPS = 60;
     this.app.ticker.add((delta) => {
@@ -47,14 +38,7 @@ export default class Pixi {
     });
   }
 
-  init = async () => {
-    await this.spriteManager.loadTextures();
-    this.game = new Game(this.scene);
-  };
-
-  update() {
-    if (this.game) this.game.update();
-  }
+  update() {}
 
   dispose() {}
 }

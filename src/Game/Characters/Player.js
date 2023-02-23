@@ -8,9 +8,9 @@ import {
   HEIGHT,
   WIDTH,
 } from "../../utils/constants.js";
-import { Bullet } from "../Various/Bullets";
-import SpriteManager from "../Various/SpriteManager.js";
-import InputManager from "../Various/InputManager";
+import { Bullet } from "../Items/Bullets";
+import SpriteManager from "../Managers/SpriteManager.js";
+import InputManager from "../Managers/InputManager";
 
 let instance = null;
 

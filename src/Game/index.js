@@ -5,12 +5,12 @@ import {
   BACKGROUND_SPRITE_KIND_NUMBER,
   MENU,
 } from "../utils/constants";
-import SpriteManager from "./Various/SpriteManager";
+import SpriteManager from "./Managers/SpriteManager";
 import VillainManager from "./Characters/VillainManager";
-import { CollisionManager } from "./Various/CollisionManager";
+import { CollisionManager } from "./Managers/CollisionManager";
 import Pixi from "../Pixi";
 import { Sprite } from "pixi.js";
-import InputManager from "./Various/InputManager";
+import InputManager from "./Managers/InputManager";
 
 export default class Game {
   constructor() {

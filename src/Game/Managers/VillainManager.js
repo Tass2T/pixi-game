@@ -1,8 +1,8 @@
 import Pixi from "../../Pixi";
 import { MAX_NUMBER_OF_VILLAIN, VILLAIN_SPEED } from "../../utils/constants";
 
-import Player from "./Player";
-import Villain from "./Villain";
+import Player from "../Characters/Player";
+import Villain from "../Characters/Villain";
 
 let instance = null;
 export default class VillainManager {
