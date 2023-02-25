@@ -1,4 +1,4 @@
-import { Container, Graphics, Rectangle } from "pixi.js";
+import { Container } from "pixi.js";
 import { MENU } from "../../utils/constants";
 import Player from "../Characters/Player";
 import { CollisionManager } from "../Managers/CollisionManager";
@@ -20,6 +20,10 @@ export default class Game {
       this.villainManager,
       stateFunc
     );
+    this.app.stage.on("click", (e) => {
+      if (this.container.visible) this.player.shoot(e)
+      }
+    )
   }
 
   reset = () => {

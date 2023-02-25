@@ -23,7 +23,6 @@ export default class Player extends Character {
     this.inputManager = new InputManager();
     this.preparePlayer();
     this.bullets = [];
-    this.container.on("click", this.shoot);
   }
 
   async preparePlayer() {
