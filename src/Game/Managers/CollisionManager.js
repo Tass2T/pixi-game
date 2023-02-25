@@ -14,7 +14,7 @@ export class CollisionManager {
       .filter((villain) => !villain.isDead)
       .forEach((villain) => {
         if (
-          this.hitTestRectangle(villain.hitbox, this.player.sprite.getBounds())
+          this.hitTestRectangle(villain.hitbox, this.player.hitbox)
         ) {
           this.player.isDead = true;
           this.stateFunc("gameOver");

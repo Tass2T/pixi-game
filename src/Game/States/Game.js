@@ -22,7 +22,7 @@ export default class Game {
     );
     this.app.stage.on("click", (e) => {
       if (this.container.visible) this.player.shoot(e)
-      }
+       }
     )
   }
 

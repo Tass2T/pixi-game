@@ -28,6 +28,7 @@ export default class Villain extends Character {
     this.sprite = new AnimatedSprite(
       this.sheet.animations[originDirection.toLowerCase()]
     );
+    this.sprite.zIndex =3
     this.sprite.animationSpeed = ANIMATION_SPEED;
     this.sprite.anchor.set(0.5);
     this.setPosition(originDirection);
