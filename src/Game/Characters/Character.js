@@ -1,8 +1,8 @@
-import Pixi from "../../Pixi";
+import Pixi from "../../App";
 
 export default class Character {
-  constructor() {
-    this.scene = new Pixi().scene;
+  constructor(parentContainer) {
+    this.container = parentContainer;
     this.destination = {
       x: 0,
       y: 0,
@@ -10,6 +10,6 @@ export default class Character {
     this.spriteDirection = "down";
     this.directions = [];
     this.isMoving = false;
-    this.isDead = false
+    this.isDead = false;
   }
 }

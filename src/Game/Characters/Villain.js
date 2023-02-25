@@ -1,6 +1,6 @@
 import { AnimatedSprite, Rectangle } from "pixi.js";
 import { HEIGHT, WIDTH } from "../../utils/constants";
-import SpriteManager from "../Various/SpriteManager";
+import SpriteManager from "../Managers/SpriteManager";
 import {
   VILLAIN_SPAWN_DIRECTION,
   ANIMATION_SPEED,
@@ -8,8 +8,8 @@ import {
 import Character from "./Character";
 
 export default class Villain extends Character {
-  constructor(scene, speed) {
-    super(scene);
+  constructor(container, speed) {
+    super(container);
     this.spriteManager = new SpriteManager();
     this.hitbox = new Rectangle();
     this.prepareSprite();
@@ -32,7 +32,7 @@ export default class Villain extends Character {
     this.sprite.anchor.set(0.5);
     this.setPosition(originDirection);
     this.setHitbox();
-    this.scene.addChild(this.sprite);
+    this.container.addChild(this.sprite);
     this.sprite.play();
   };
 
@@ -88,6 +88,10 @@ export default class Villain extends Character {
       this.revive();
     };
   }
+
+  dispose = () => {
+    this.sprite.destroy();
+  };
 
   update = (x, y) => {
     if (!this.isDead) {

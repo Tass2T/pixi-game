@@ -1,3 +1,3 @@
-import Pixi from "./src/Pixi.js";
+import App from "./src/App.js";
 
-const pixi = new Pixi();
+const app = new App();

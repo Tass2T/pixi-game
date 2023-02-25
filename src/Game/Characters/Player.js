@@ -8,22 +8,22 @@ import {
   HEIGHT,
   WIDTH,
 } from "../../utils/constants.js";
-import { Bullet } from "../Various/Bullets";
-import SpriteManager from "../Various/SpriteManager.js";
-import InputManager from "../Various/InputManager";
+import { Bullet } from "../Items/Bullets";
+import SpriteManager from "../Managers/SpriteManager.js";
+import InputManager from "../Managers/InputManager";
 
 let instance = null;
 
 export default class Player extends Character {
-  constructor() {
+  constructor(parentContainer) {
     if (instance) return instance;
-    super();
+    super(parentContainer);
     instance = this;
     this.spriteManager = new SpriteManager();
     this.inputManager = new InputManager();
     this.preparePlayer();
     this.bullets = [];
-    this.scene.on("click", this.shoot);
+    this.container.on("click", this.shoot);
   }
 
   async preparePlayer() {
@@ -38,7 +38,7 @@ export default class Player extends Character {
     this.sprite.x = WIDTH / 2 - this.sprite.width / 2;
     this.sprite.y = HEIGHT / 2 - this.sprite.height / 2;
 
-    this.scene.addChild(this.sprite);
+    this.container.addChild(this.sprite);
   }
 
   updateSprite = () => {
@@ -59,7 +59,7 @@ export default class Player extends Character {
     const origin = { x: this.sprite.x, y: this.sprite.y };
     const destination = { x: pos.x, y: pos.y };
     this.bullets.push(
-      new Bullet(origin, destination, this.scene, this.explosionTexture)
+      new Bullet(origin, destination, this.container, this.explosionTexture)
     );
   };
 
@@ -78,6 +78,16 @@ export default class Player extends Character {
       bullet.update();
     });
   }
+
+  reset = () => {
+    this.bullets.forEach((bullet) => {
+      bullet.dispose();
+    });
+    this.bullets = [];
+    this.sprite.x = WIDTH / 2 - this.sprite.width / 2;
+    this.sprite.y = HEIGHT / 2 - this.sprite.height / 2;
+    this.playerSpriteSheet.animations.down;
+  };
 
   dispose() {}
 }
