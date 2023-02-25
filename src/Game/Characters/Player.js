@@ -21,7 +21,7 @@ export default class Player extends Character {
     instance = this;
     this.spriteManager = new SpriteManager();
     this.inputManager = new InputManager();
-    this.hitbox = new Rectangle()
+    this.hitbox = new Rectangle();
     this.preparePlayer();
     this.bullets = [];
   }
@@ -37,26 +37,26 @@ export default class Player extends Character {
     this.sprite.anchor.set(0.5);
     this.sprite.x = WIDTH / 2 - this.sprite.width / 2;
     this.sprite.y = HEIGHT / 2 - this.sprite.height / 2;
-      this.sprite.zIndex = 2
+    this.sprite.zIndex = this.sprite.y;
     this.container.addChild(this.sprite);
-    this.setHitbox()
+    this.setHitbox();
   }
 
   setHitbox = () => {
-    const spriteCoord = this.sprite.getBounds()
+    const spriteCoord = this.sprite.getBounds();
 
-    this.hitbox.x = spriteCoord.x + 40
-    this.hitbox.y = spriteCoord.y + 40
-    this.hitbox.height = spriteCoord.height - 80
-    this.hitbox.width = spriteCoord.width - 80
-  }
+    this.hitbox.x = spriteCoord.x + 40;
+    this.hitbox.y = spriteCoord.y + 40;
+    this.hitbox.height = spriteCoord.height - 80;
+    this.hitbox.width = spriteCoord.width - 80;
+  };
 
   updateSprite = () => {
     for (const [key, value] of Object.entries(CONTROLS)) {
       if (this.inputManager.keys[value]) {
         this.sprite.textures =
           this.playerSpriteSheet.animations[key.toLowerCase()];
-          this.sprite.play()
+        this.sprite.play();
         return;
       }
       this.sprite.stop();
@@ -73,7 +73,7 @@ export default class Player extends Character {
   };
 
   update() {
-    
+    this.sprite.zIndex = this.sprite.y;
     if (this.inputManager.keys[CONTROLS.DOWN] && this.sprite.y <= HEIGHT - 52)
       this.sprite.y += CHARACTER_SPEED;
     if (this.inputManager.keys[CONTROLS.UP] && this.sprite.y >= 0)
@@ -82,8 +82,8 @@ export default class Player extends Character {
       this.sprite.x -= CHARACTER_SPEED;
     if (this.inputManager.keys[CONTROLS.RIGHT] && this.sprite.x <= WIDTH - 45)
       this.sprite.x += CHARACTER_SPEED;
-      this.updateSprite();
-    this.setHitbox()
+    this.updateSprite();
+    this.setHitbox();
     this.bullets.forEach((bullet) => {
       bullet.update();
     });

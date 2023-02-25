@@ -13,10 +13,6 @@ export default class Villain extends Character {
     this.spriteManager = new SpriteManager();
     this.hitbox = new Rectangle();
     this.prepareSprite();
-    this.destination = {
-      x: 0,
-      y: 0,
-    };
     this.speed = speed;
   }
 
