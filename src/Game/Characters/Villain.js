@@ -89,6 +89,10 @@ export default class Villain extends Character {
     };
   }
 
+  dispose = () => {
+    this.sprite.destroy();
+  };
+
   update = (x, y) => {
     if (!this.isDead) {
       const vectorX = x - this.sprite.x;

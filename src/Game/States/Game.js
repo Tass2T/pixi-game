@@ -22,6 +22,11 @@ export default class Game {
     );
   }
 
+  reset = () => {
+    this.player.reset();
+    this.villainManager.reset();
+  };
+
   update = () => {
     if (!this.inputManager.keys[MENU.PAUSE]) {
       this.player.update();

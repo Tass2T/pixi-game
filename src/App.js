@@ -60,6 +60,7 @@ export default class App {
   changeState = (newState) => {
     this.states[this.state].container.visible = false;
     this.state = newState;
+    if (newState === "gameOver") this.states.game.reset();
     this.states[this.state].container.visible = true;
   };
 

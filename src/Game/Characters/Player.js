@@ -79,5 +79,15 @@ export default class Player extends Character {
     });
   }
 
+  reset = () => {
+    this.bullets.forEach((bullet) => {
+      bullet.dispose();
+    });
+    this.bullets = [];
+    this.sprite.x = WIDTH / 2 - this.sprite.width / 2;
+    this.sprite.y = HEIGHT / 2 - this.sprite.height / 2;
+    this.playerSpriteSheet.animations.down;
+  };
+
   dispose() {}
 }
