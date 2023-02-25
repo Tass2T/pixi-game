@@ -1,14 +1,15 @@
 export class CollisionManager {
-  constructor(player, villainManager) {
+  constructor(player, villainManager, stateFunc) {
     this.player = player;
     this.villainManager = villainManager;
+    this.stateFunc = stateFunc;
   }
 
   update() {
     this.checkImpacts();
   }
 
-  checkImpacts() {
+  checkImpacts = () => {
     this.villainManager.villains
       .filter((villain) => !villain.isDead)
       .forEach((villain) => {
@@ -16,6 +17,7 @@ export class CollisionManager {
           this.hitTestRectangle(villain.hitbox, this.player.sprite.getBounds())
         ) {
           this.player.isDead = true;
+          this.stateFunc("gameOver");
         }
 
         this.player.bullets.forEach((bullet) => {
@@ -27,7 +29,7 @@ export class CollisionManager {
           }
         });
       });
-  }
+  };
 
   hitTestRectangle(r1, r2) {
     //Define the variables we'll need to calculate

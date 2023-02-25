@@ -12,6 +12,7 @@ import SpriteManager from "./Game/Managers/SpriteManager";
 import { Sprite } from "pixi.js";
 import Menu from "./Game/States/Menu";
 import Game from "./Game/States/Game";
+import GameOver from "./Game/States/GameOver";
 
 gsap.registerPlugin(PixiPlugin);
 PixiPlugin.registerPIXI(PIXI);
@@ -52,9 +53,8 @@ export default class App {
     this.states = {
       menu: new Menu(this.app, this.changeState),
       game: new Game(this.app, this.changeState),
+      gameOver: new GameOver(this.app, this.changeState),
     };
-
-    this.states.game.container.visible = false;
   };
 
   changeState = (newState) => {

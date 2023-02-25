@@ -9,6 +9,7 @@ export default class Game {
   constructor(app, stateFunc) {
     this.app = app;
     this.container = new Container();
+    this.container.visible = false;
     this.app.stage.addChild(this.container);
     this.container.interactive = true;
     this.inputManager = new InputManager();
@@ -16,7 +17,8 @@ export default class Game {
     this.villainManager = new VillainManager(this.container);
     this.collisionManager = new CollisionManager(
       this.player,
-      this.villainManager
+      this.villainManager,
+      stateFunc
     );
   }
 
