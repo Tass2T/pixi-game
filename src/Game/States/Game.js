@@ -54,6 +54,9 @@ export default class Game {
   pauseGame = () => {
     this.isInPause = !this.isInPause;
     this.player.pause(this.isInPause);
+    this.villains.forEach((villain) => {
+      villain.pause();
+    });
   };
 
   addVilain = () => {

@@ -12,19 +12,14 @@ import { Bullet } from "../Items/Bullets";
 import SpriteManager from "../Managers/SpriteManager.js";
 import InputManager from "../Managers/InputManager";
 
-let instance = null;
-
 export default class Player extends Character {
   constructor(parentContainer) {
-    if (instance) return instance;
     super(parentContainer);
-    instance = this;
     this.spriteManager = new SpriteManager();
     this.inputManager = new InputManager();
     this.hitbox = new Rectangle();
     this.preparePlayer();
     this.bullets = [];
-    this.isInPause = false;
     this.inputManager.on("playerInput", () => this.updateSprite());
   }
 
@@ -71,9 +66,7 @@ export default class Player extends Character {
       const pos = e.data.global;
       const origin = { x: this.sprite.x, y: this.sprite.y };
       const destination = { x: pos.x, y: pos.y };
-      this.bullets.push(
-        new Bullet(origin, destination, this.container, this.explosionTexture)
-      );
+      this.bullets.push(new Bullet(origin, destination, this.container, this));
     }
   };
 
@@ -92,12 +85,6 @@ export default class Player extends Character {
       bullet.update();
     });
   }
-
-  pause = (pauseStatus) => {
-    this.isInPause = pauseStatus;
-    if (pauseStatus) this.sprite.stop();
-    else this.sprite.play();
-  };
 
   reset = () => {
     this.bullets.forEach((bullet) => {

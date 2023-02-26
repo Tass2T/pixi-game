@@ -5,9 +5,9 @@ import Player from "../Characters/Player";
 import { BULLET_SPEED, HEIGHT, WIDTH } from "../../utils/constants";
 
 export class Bullet {
-  constructor(origin, destination, scene) {
+  constructor(origin, destination, scene, player) {
     this.scene = scene;
-    this.player = new Player();
+    this.player = player;
     this.spriteManager = new SpriteManager();
     this.origin = {
       x: origin.x,
