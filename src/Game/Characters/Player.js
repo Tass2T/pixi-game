@@ -24,6 +24,7 @@ export default class Player extends Character {
     this.hitbox = new Rectangle();
     this.preparePlayer();
     this.bullets = [];
+    this.inputManager.on("playerInput", () => this.updateSprite());
   }
 
   async preparePlayer() {
@@ -82,7 +83,6 @@ export default class Player extends Character {
       this.sprite.x -= CHARACTER_SPEED;
     if (this.inputManager.keys[CONTROLS.RIGHT] && this.sprite.x <= WIDTH - 45)
       this.sprite.x += CHARACTER_SPEED;
-    this.updateSprite();
     this.setHitbox();
     this.bullets.forEach((bullet) => {
       bullet.update();

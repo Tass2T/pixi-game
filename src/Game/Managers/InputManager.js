@@ -1,10 +1,12 @@
 import { MENU } from "../../utils/constants";
+import EventEmitter from "./EventEmitter";
 
 let instance = null;
 
-export default class InputManager {
+export default class InputManager extends EventEmitter {
   constructor() {
     if (instance) return instance;
+    super();
     instance = this;
     this.keys = {};
     window.addEventListener("keydown", this.manageInput);
@@ -21,11 +23,15 @@ export default class InputManager {
             break;
           default:
             this.keys[e.keyCode] = true;
+            this.trigger("playerInput");
             break;
         }
         break;
       case "keyup":
-        if (e.keyCode !== MENU.PAUSE) this.keys[e.keyCode] = false;
+        if (e.keyCode !== MENU.PAUSE) {
+          this.keys[e.keyCode] = false;
+          this.trigger("playerInput");
+        }
         break;
       default:
         break;
