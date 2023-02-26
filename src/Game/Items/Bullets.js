@@ -1,7 +1,6 @@
 import { Rectangle, Sprite } from "pixi.js";
 import gsap from "gsap";
 import SpriteManager from "../Managers/SpriteManager";
-import Player from "../Characters/Player";
 import { BULLET_SPEED, HEIGHT, WIDTH } from "../../utils/constants";
 
 export class Bullet {
