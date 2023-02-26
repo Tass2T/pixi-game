@@ -16,6 +16,7 @@ export default class Game {
     this.container.visible = false;
     this.app.stage.addChild(this.container);
     this.container.interactive = true;
+    this.container.sortableChildren = true;
     this.inputManager = new InputManager();
     this.player = new Player(this.container);
     this.nbOfVillain = 1;

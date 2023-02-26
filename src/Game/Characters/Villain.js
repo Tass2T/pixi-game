@@ -24,9 +24,9 @@ export default class Villain extends Character {
     this.sprite = new AnimatedSprite(
       this.sheet.animations[originDirection.toLowerCase()]
     );
-    this.sprite.zIndex =3
     this.sprite.animationSpeed = ANIMATION_SPEED;
     this.sprite.anchor.set(0.5);
+    this.sprite.zIndex = this.sprite.y;
     this.setPosition(originDirection);
     this.setHitbox();
     this.container.addChild(this.sprite);
@@ -97,6 +97,7 @@ export default class Villain extends Character {
       const distance = Math.sqrt(Math.pow(vectorX, 2) + Math.pow(vectorY, 2));
       this.sprite.x += (vectorX / distance) * this.speed;
       this.sprite.y += (vectorY / distance) * this.speed;
+      this.sprite.zIndex = this.sprite.y;
       this.setHitbox();
     }
   };
