@@ -20,6 +20,7 @@ export default class InputManager extends EventEmitter {
         switch (e.keyCode) {
           case MENU.PAUSE:
             this.keys[e.keyCode] = !this.keys[e.keyCode];
+            this.trigger("pause");
             break;
           default:
             this.keys[e.keyCode] = true;

@@ -20,10 +20,14 @@ export default class Game {
     this.inputManager = new InputManager();
     this.player = new Player(this.container);
     this.nbOfVillain = 1;
+    this.isInPause = false;
     this.villain_speed = VILLAIN_SPEED;
     this.villains = [new Villain(this.container, this.villain_speed)];
     this.app.stage.on("click", (e) => {
       if (this.container.visible) this.player.shoot(e);
+    });
+    this.inputManager.on("pause", () => {
+      this.pauseGame();
     });
   }
 
@@ -38,13 +42,18 @@ export default class Game {
   };
 
   update = () => {
-    if (!this.inputManager.keys[MENU.PAUSE]) {
+    if (!this.isInPause) {
       this.player.update();
       this.villains.forEach((villain) => {
         villain.update(this.player.sprite.x, this.player.sprite.y);
       });
       this.checkImpacts();
     }
+  };
+
+  pauseGame = () => {
+    this.isInPause = !this.isInPause;
+    this.player.pause(this.isInPause);
   };
 
   addVilain = () => {

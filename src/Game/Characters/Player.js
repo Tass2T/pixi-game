@@ -24,6 +24,7 @@ export default class Player extends Character {
     this.hitbox = new Rectangle();
     this.preparePlayer();
     this.bullets = [];
+    this.isInPause = false;
     this.inputManager.on("playerInput", () => this.updateSprite());
   }
 
@@ -45,7 +46,6 @@ export default class Player extends Character {
 
   setHitbox = () => {
     const spriteCoord = this.sprite.getBounds();
-
     this.hitbox.x = spriteCoord.x + 40;
     this.hitbox.y = spriteCoord.y + 40;
     this.hitbox.height = spriteCoord.height - 80;
@@ -53,24 +53,28 @@ export default class Player extends Character {
   };
 
   updateSprite = () => {
-    for (const [key, value] of Object.entries(CONTROLS)) {
-      if (this.inputManager.keys[value]) {
-        this.sprite.textures =
-          this.playerSpriteSheet.animations[key.toLowerCase()];
-        this.sprite.play();
-        return;
+    if (!this.isInPause) {
+      for (const [key, value] of Object.entries(CONTROLS)) {
+        if (this.inputManager.keys[value]) {
+          this.sprite.textures =
+            this.playerSpriteSheet.animations[key.toLowerCase()];
+          this.sprite.play();
+          return;
+        }
+        this.sprite.stop();
       }
-      this.sprite.stop();
     }
   };
 
   shoot = (e) => {
-    const pos = e.data.global;
-    const origin = { x: this.sprite.x, y: this.sprite.y };
-    const destination = { x: pos.x, y: pos.y };
-    this.bullets.push(
-      new Bullet(origin, destination, this.container, this.explosionTexture)
-    );
+    if (!this.isInPause) {
+      const pos = e.data.global;
+      const origin = { x: this.sprite.x, y: this.sprite.y };
+      const destination = { x: pos.x, y: pos.y };
+      this.bullets.push(
+        new Bullet(origin, destination, this.container, this.explosionTexture)
+      );
+    }
   };
 
   update() {
@@ -88,6 +92,12 @@ export default class Player extends Character {
       bullet.update();
     });
   }
+
+  pause = (pauseStatus) => {
+    this.isInPause = pauseStatus;
+    if (pauseStatus) this.sprite.stop();
+    else this.sprite.play();
+  };
 
   reset = () => {
     this.bullets.forEach((bullet) => {
