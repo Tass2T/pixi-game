@@ -103,6 +103,8 @@ export default class Game {
     this.villains.forEach((villain) => {
       villain.dispose();
     });
+    this.nbOfSlainedVillain = 0;
+    this.updateSlainedCounter();
     this.villains = [new Villain(this.container, this.villain_speed)];
   };
 
