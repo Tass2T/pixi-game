@@ -67,6 +67,7 @@ export default class Villain extends Character {
       VILLAIN_SPAWN_DIRECTION[Math.floor(Math.random() * 4)];
     this.sprite.textures = this.sheet.animations[originDirection.toLowerCase()];
     this.sprite.loop = true;
+    this.speed += 0.01;
     this.sprite.gotoAndPlay(0);
     this.setPosition(originDirection);
     this.isDead = false;

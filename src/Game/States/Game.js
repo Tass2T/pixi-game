@@ -24,6 +24,8 @@ export default class Game {
     this.nbOfVillain = 1;
     this.isInPause = false;
     this.villain_speed = VILLAIN_SPEED;
+    this.nbOfSlainedVillain = 0;
+    this.slainedVillainCounter = this.prepareCounter();
     this.villains = [new Villain(this.container, this.villain_speed)];
     this.app.stage.on("click", (e) => {
       if (this.container.visible) this.player.shoot(e);
@@ -68,6 +70,30 @@ export default class Game {
 
     this.container.addChild(pauseScreen);
     return pauseScreen;
+  };
+
+  prepareCounter = () => {
+    const counterContainer = new Container();
+    counterContainer.x = 100;
+    counterContainer.y = HEIGHT - 60;
+    counterContainer.zIndex = 99999;
+
+    const counter = new Text(this.nbOfSlainedVillain);
+    counter.anchor.set(0);
+    counter.style = new TextStyle({
+      fill: 0xffffff,
+      fontFamily: '"Lucida Console", Monaco, monospace',
+      fontSize: 30,
+    });
+
+    counterContainer.addChild(counter);
+
+    this.container.addChild(counterContainer);
+    return counterContainer;
+  };
+
+  updateSlainedCounter = () => {
+    this.slainedVillainCounter.children[0].text = this.nbOfSlainedVillain;
   };
 
   reset = () => {
@@ -118,6 +144,8 @@ export default class Game {
           if (this.hitTestRectangle(villain.hitbox, bullet.hitbox)) {
             bullet.dispose();
             villain.dies();
+            this.nbOfSlainedVillain += 1;
+            this.updateSlainedCounter();
             this.addVilain();
             this.villain_speed += 0.01;
           }
