@@ -1,8 +1,9 @@
-import { Container } from "pixi.js";
+import { Container, Graphics, Rectangle } from "pixi.js";
 import {
-  MENU,
   VILLAIN_SPEED,
   MAX_NUMBER_OF_VILLAIN,
+  WIDTH,
+  HEIGHT,
 } from "../../utils/constants";
 import Player from "../Characters/Player";
 import Villain from "../Characters/Villain";
@@ -19,6 +20,7 @@ export default class Game {
     this.container.sortableChildren = true;
     this.inputManager = new InputManager();
     this.player = new Player(this.container);
+    this.pauseScreen = this.preparePauseScreen();
     this.nbOfVillain = 1;
     this.isInPause = false;
     this.villain_speed = VILLAIN_SPEED;
@@ -30,6 +32,24 @@ export default class Game {
       this.pauseGame();
     });
   }
+
+  preparePauseScreen = () => {
+    const pauseScreen = new Container();
+    pauseScreen.x = 0;
+    pauseScreen.y = 0;
+    pauseScreen.width = WIDTH;
+    pauseScreen.height = HEIGHT;
+    pauseScreen.visible = false;
+    pauseScreen.zIndex = 100000;
+
+    const pauseBackGround = new Graphics();
+    pauseBackGround.beginFill(0x000000, 0.5);
+    pauseBackGround.drawRect(0, 0, WIDTH, HEIGHT);
+    pauseScreen.addChild(pauseBackGround);
+
+    this.container.addChild(pauseScreen);
+    return pauseScreen;
+  };
 
   reset = () => {
     this.player.reset();
@@ -55,8 +75,10 @@ export default class Game {
     this.isInPause = !this.isInPause;
     this.player.pause(this.isInPause);
     this.villains.forEach((villain) => {
-      villain.pause();
+      villain.pause(this.isInPause);
     });
+    this.pauseScreen.visible = false;
+    if (this.isInPause) this.pauseScreen.visible = true;
   };
 
   addVilain = () => {
