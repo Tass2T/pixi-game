@@ -1,4 +1,4 @@
-import { Container, Graphics, Rectangle } from "pixi.js";
+import { Container, Graphics, Text, TextStyle } from "pixi.js";
 import {
   VILLAIN_SPEED,
   MAX_NUMBER_OF_VILLAIN,
@@ -45,7 +45,26 @@ export default class Game {
     const pauseBackGround = new Graphics();
     pauseBackGround.beginFill(0x000000, 0.5);
     pauseBackGround.drawRect(0, 0, WIDTH, HEIGHT);
-    pauseScreen.addChild(pauseBackGround);
+
+    const pauseLogo = new Text("PAUSE");
+    pauseLogo.anchor.set(0.5);
+    pauseLogo.x = 600;
+    pauseLogo.y = 300;
+    pauseLogo.style = new TextStyle({
+      fill: 0xffffff,
+      fontFamily: '"Lucida Console", Monaco, monospace',
+      fontSize: 120,
+    });
+    const pauseComment = new Text("Press ESC to go back fighting!");
+    pauseComment.anchor.set(0.5);
+    pauseComment.x = 600;
+    pauseComment.y = 450;
+    pauseComment.style = new TextStyle({
+      fill: 0xffffff,
+      fontFamily: '"Lucida Console", Monaco, monospace',
+      fontSize: 20,
+    });
+    pauseScreen.addChild(pauseBackGround, pauseLogo, pauseComment);
 
     this.container.addChild(pauseScreen);
     return pauseScreen;
