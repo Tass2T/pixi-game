@@ -29,7 +29,7 @@ export default class GameOver {
       this.stateFunc("game");
     });
 
-    const text = new Text("Recommencer");
+    const text = new Text("Restart");
     text.anchor.set(0.5);
     text.x = textContainer.x;
     text.y = textContainer.y;
