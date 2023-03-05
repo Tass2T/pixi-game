@@ -18,7 +18,7 @@ export default class Menu {
   };
 
   drawTexts = () => {
-    const title = new Text("Tuffy contre les vampires");
+    const title = new Text("Chuffy, Vampire Slayer");
     title.anchor.set(0.5);
     title.x = this.app.view.width / 2;
     title.y = 150;
@@ -33,7 +33,7 @@ export default class Menu {
     this.optionContainer.x = 300;
     this.optionContainer.y = 200;
 
-    const newGame = new Text("Démarrer une nouvelle partie");
+    const newGame = new Text("New game");
     newGame.anchor.set(0.5);
     newGame.x = this.optionContainer.x;
     newGame.y = this.optionContainer.y;

@@ -13,10 +13,6 @@ export default class Villain extends Character {
     this.spriteManager = new SpriteManager();
     this.hitbox = new Rectangle();
     this.prepareSprite();
-    this.destination = {
-      x: 0,
-      y: 0,
-    };
     this.speed = speed;
   }
 
@@ -28,9 +24,9 @@ export default class Villain extends Character {
     this.sprite = new AnimatedSprite(
       this.sheet.animations[originDirection.toLowerCase()]
     );
-    this.sprite.zIndex =3
     this.sprite.animationSpeed = ANIMATION_SPEED;
     this.sprite.anchor.set(0.5);
+    this.sprite.zIndex = this.sprite.y;
     this.setPosition(originDirection);
     this.setHitbox();
     this.container.addChild(this.sprite);
@@ -71,6 +67,7 @@ export default class Villain extends Character {
       VILLAIN_SPAWN_DIRECTION[Math.floor(Math.random() * 4)];
     this.sprite.textures = this.sheet.animations[originDirection.toLowerCase()];
     this.sprite.loop = true;
+    this.speed += 0.01;
     this.sprite.gotoAndPlay(0);
     this.setPosition(originDirection);
     this.isDead = false;
@@ -101,6 +98,7 @@ export default class Villain extends Character {
       const distance = Math.sqrt(Math.pow(vectorX, 2) + Math.pow(vectorY, 2));
       this.sprite.x += (vectorX / distance) * this.speed;
       this.sprite.y += (vectorY / distance) * this.speed;
+      this.sprite.zIndex = this.sprite.y;
       this.setHitbox();
     }
   };

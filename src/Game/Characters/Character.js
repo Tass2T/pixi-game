@@ -9,7 +9,15 @@ export default class Character {
     };
     this.spriteDirection = "down";
     this.directions = [];
+    this.isInPause = false;
     this.isMoving = false;
     this.isDead = false;
+    this.sprite;
   }
+
+  pause = (pauseStatus) => {
+    this.isInPause = pauseStatus;
+    if (pauseStatus) this.sprite.stop();
+    else this.sprite.play();
+  };
 }
