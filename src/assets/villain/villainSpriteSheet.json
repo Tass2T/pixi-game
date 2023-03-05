@@ -129,7 +129,7 @@
     "image": "./villainSpriteSheet.png",
     "format": "RGBA8888",
     "size": { "w": 2000, "h": 2000 },
-    "scale": 4.5
+    "scale": 6.5
   },
   "animations": {
     "down": [
