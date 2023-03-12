@@ -12,13 +12,13 @@ export default class SpriteManager {
   }
 
   addTextures = () => {
-    this.loader.add("player", "./player/playerSpriteSheetData.json");
+    this.loader.add("player", "src/assets/player/playerSpriteSheetData.json");
     this.loader.add(
       "background",
-      "./background/backgroundSpriteSheetData.json"
+      "src/assets/background/backgroundSpriteSheetData.json"
     );
-    this.loader.add("bullet", "./bullets/stake.png");
-    this.loader.add("villain", "./villain/villainSpriteSheet.json");
+    this.loader.add("bullet", "src/assets/bullets/stake.png");
+    this.loader.add("villain", "src/assets/villain/villainSpriteSheet.json");
   };
 
   loadTextures = async (callback) => {
