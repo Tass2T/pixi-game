@@ -85,7 +85,7 @@
     "image": "./playerSpriteSheet.png",
     "format": "RGBA8888",
     "size": { "w": 2000, "h": 2000 },
-    "scale": 6.5
+    "scale": 5.5
   },
   "animations": {
     "down": ["player_down1", "player_down2", "player_down3", "player_down4"],
