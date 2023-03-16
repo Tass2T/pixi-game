@@ -1,4 +1,3 @@
-
 import { defineConfig } from "vite";
 
 export default defineConfig(({ command }) => {
@@ -19,7 +18,7 @@ export default defineConfig(({ command }) => {
   } else {
     return {
       root: "./",
-      publicDir: "./",
+      publicDir: "",
       base: "./",
       server: {
         host: true,
