@@ -1,8 +1,5 @@
 import * as PIXI from "pixi.js";
-import {
-  HEIGHT,
-  WIDTH,
-} from "./utils/constants";
+import { HEIGHT, WIDTH } from "./utils/constants";
 import gsap from "gsap";
 import PixiPlugin from "gsap/PixiPlugin";
 import SpriteManager from "./Game/Managers/SpriteManager";
@@ -19,11 +16,11 @@ export default class App {
     this.app = new PIXI.Application({
       width: WIDTH,
       height: HEIGHT,
-      backgroundAlpha: 0.0
+      backgroundAlpha: 0.0,
     });
     this.gameArea.appendChild(this.app.view);
     this.scene = this.app.stage;
-    this.app.stage.interactive = true
+    this.app.stage.interactive = true;
     // use gsap ticker instead
     this.app.ticker.stop();
     gsap.ticker.add(() => {
@@ -58,7 +55,7 @@ export default class App {
     this.states[this.state].container.visible = false;
     this.state = newState;
     if (newState === "gameOver") this.states.game.reset();
-    this.gameArea.style.backgroundImage=`url(src/assets/background/${newState}.png)`
+    this.gameArea.style.backgroundImage = `url(background/${newState}.png)`;
     this.states[this.state].container.visible = true;
   };
 

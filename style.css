@@ -53,7 +53,7 @@ canvas {
 }
 
 #app {
-	background-image: url("src/assets/background/menu.png");
+	background-image: url("background/menu.png");
 	object-fit: cover;
 	object-position: center;
 	height: 840px;
