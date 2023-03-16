@@ -1,6 +1,6 @@
 export default {
   root: "./",
-  publicDir: "./src/assets/",
+  publicDir: "./",
   base: "./",
   server: {
     host: true,
