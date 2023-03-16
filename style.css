@@ -51,3 +51,11 @@ table {
 canvas {
 	display: block;
 }
+
+#app {
+	background-image: url("src/assets/background/menu.png");
+	object-fit: cover;
+	object-position: center;
+	height: 840px;
+	width: 1200px;
+}

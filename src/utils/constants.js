@@ -19,11 +19,5 @@ export const MENU = {
 // VILLAIN
 export const VILLAIN_SPAWN_DIRECTION = ["UP", "DOWN", "LEFT", "RIGHT"];
 export const VILLAIN_SPEED = 0.8;
-export const MAX_NUMBER_OF_VILLAIN = 45;
+export const MAX_NUMBER_OF_VILLAIN = 75;
 
-// LEVEL
-export const BACKGROUND_SPRITE_SIZE = 270;
-export const BACKGROUND_SPRITE_NUMBER = Math.ceil(
-  WIDTH / BACKGROUND_SPRITE_SIZE
-);
-export const BACKGROUND_SPRITE_KIND_NUMBER = 5;

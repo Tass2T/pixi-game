@@ -1,15 +1,11 @@
 import * as PIXI from "pixi.js";
 import {
-  BACKGROUND_SPRITE_KIND_NUMBER,
-  BACKGROUND_SPRITE_NUMBER,
-  BACKGROUND_SPRITE_SIZE,
   HEIGHT,
   WIDTH,
 } from "./utils/constants";
 import gsap from "gsap";
 import PixiPlugin from "gsap/PixiPlugin";
 import SpriteManager from "./Game/Managers/SpriteManager";
-import { Sprite } from "pixi.js";
 import Menu from "./Game/States/Menu";
 import Game from "./Game/States/Game";
 import GameOver from "./Game/States/GameOver";
@@ -19,12 +15,13 @@ PixiPlugin.registerPIXI(PIXI);
 
 export default class App {
   constructor() {
-    const gameArea = document.querySelector("#app");
+    this.gameArea = document.querySelector("#app");
     this.app = new PIXI.Application({
       width: WIDTH,
       height: HEIGHT,
+      backgroundAlpha: 0.0
     });
-    gameArea.appendChild(this.app.view);
+    this.gameArea.appendChild(this.app.view);
     this.scene = this.app.stage;
     this.app.stage.interactive = true
     // use gsap ticker instead
@@ -40,7 +37,6 @@ export default class App {
   }
 
   init = () => {
-    this.prepareBackground();
     this.initStates();
     let elapsed = 0.0;
     this.app.ticker.maxFPS = 60;
@@ -62,31 +58,8 @@ export default class App {
     this.states[this.state].container.visible = false;
     this.state = newState;
     if (newState === "gameOver") this.states.game.reset();
+    this.gameArea.style.backgroundImage=`url(src/assets/background/${newState}.png)`
     this.states[this.state].container.visible = true;
-  };
-
-  prepareBackground = () => {
-    const backgroundTextures =
-      this.spriteManager.getTexture("backgroundTexture");
-
-    let x = 0;
-    let y = 0;
-
-    for (let i = 0; i < BACKGROUND_SPRITE_NUMBER; i++) {
-      x = 0;
-      for (let j = 0; j < BACKGROUND_SPRITE_NUMBER; j++) {
-        const sprite = Sprite.from(
-          backgroundTextures.textures[
-            Math.floor(Math.random() * BACKGROUND_SPRITE_KIND_NUMBER)
-          ]
-        );
-        sprite.x = x;
-        sprite.y = y;
-        this.scene.addChild(sprite);
-        x += BACKGROUND_SPRITE_SIZE;
-      }
-      y += BACKGROUND_SPRITE_SIZE;
-    }
   };
 
   update() {

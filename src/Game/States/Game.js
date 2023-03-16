@@ -16,6 +16,13 @@ export default class Game {
     this.container = new Container();
     this.container.visible = false;
     this.app.stage.addChild(this.container);
+
+    // strech container to the app width and height
+    const clickableArea = new Graphics();
+    clickableArea.beginFill(0x000000, 0.000001);
+    clickableArea.drawRect(0, 0, this.app.view.width, this.app.view.height);
+    this.container.addChild(clickableArea);
+
     this.container.interactive = true;
     this.container.sortableChildren = true;
     this.inputManager = new InputManager();
@@ -27,7 +34,7 @@ export default class Game {
     this.nbOfSlainedVillain = 0;
     this.slainedVillainCounter = this.prepareCounter();
     this.villains = [new Villain(this.container, this.villain_speed)];
-    this.app.stage.on("click", (e) => {
+    this.container.on("click", (e) => {
       if (this.container.visible) this.player.shoot(e);
     });
     this.inputManager.on("pause", () => {
