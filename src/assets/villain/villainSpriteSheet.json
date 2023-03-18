@@ -126,7 +126,7 @@
     }
   },
   "meta": {
-    "image": "./villainSpriteSheet.png",
+    "image": "/villainSpriteSheet.png",
     "format": "RGBA8888",
     "size": { "w": 2000, "h": 2000 },
     "scale": 5.5
