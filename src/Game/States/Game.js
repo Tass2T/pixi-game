@@ -23,7 +23,7 @@ export default class Game {
     clickableArea.drawRect(0, 0, this.app.view.width, this.app.view.height);
     this.container.addChild(clickableArea);
 
-    this.container.interactive = true;
+    this.container.eventMode = "static";
     this.container.sortableChildren = true;
     this.inputManager = new InputManager();
     this.player = new Player(this.container);

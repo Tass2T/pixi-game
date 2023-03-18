@@ -5,6 +5,7 @@ export default class GameOver {
     this.app = app;
     this.stateFunc = stateFunc;
     this.container = new Container();
+    this.container.eventMode = "static";
     this.container.visible = false;
     this.drawBackground();
     this.drawMenu();
@@ -21,7 +22,6 @@ export default class GameOver {
 
   drawMenu = () => {
     const textContainer = new Container();
-    textContainer.interactive = true;
     textContainer.x = 300;
     textContainer.y = 200;
     this.container.addChild(textContainer);
