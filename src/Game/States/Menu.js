@@ -29,7 +29,7 @@ export default class Menu {
     });
 
     this.optionContainer = new Container();
-    this.optionContainer.interactive = true;
+    this.optionContainer.eventMode = "static";
     this.optionContainer.x = 300;
     this.optionContainer.y = 200;
 

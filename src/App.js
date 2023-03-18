@@ -20,7 +20,7 @@ export default class App {
     });
     this.gameArea.appendChild(this.app.view);
     this.scene = this.app.stage;
-    this.app.stage.interactive = true;
+    this.app.stage.eventMode = "static";
     // use gsap ticker instead
     this.app.ticker.stop();
     gsap.ticker.add(() => {
