@@ -18,16 +18,15 @@ export default class Villain extends Character {
 
   prepareSprite = (newSpeed = null) => {
     if (newSpeed) this.speed = newSpeed;
-    const originDirection =
-      VILLAIN_SPAWN_DIRECTION[Math.floor(Math.random() * 4)];
+    this.direction = VILLAIN_SPAWN_DIRECTION[Math.floor(Math.random() * 4)];
     this.sheet = this.spriteManager.getTexture("villainTexture");
     this.sprite = new AnimatedSprite(
-      this.sheet.animations[originDirection.toLowerCase()]
+      this.sheet.animations[this.direction.toLowerCase()]
     );
     this.sprite.animationSpeed = ANIMATION_SPEED;
     this.sprite.anchor.set(0.5);
     this.sprite.zIndex = this.sprite.y;
-    this.setPosition(originDirection);
+    this.setPosition(this.direction);
     this.setHitbox();
     this.container.addChild(this.sprite);
     this.sprite.play();
@@ -76,6 +75,33 @@ export default class Villain extends Character {
     this.setHitbox();
   };
 
+  manageDirection = (vectorX, vectorY) => {
+    if (vectorY <= 50 && vectorY >= -50) {
+      if (vectorX < 0 && this.direction !== "LEFT") {
+        this.direction = "LEFT";
+        this.sprite.textures = this.sheet.animations["left"];
+        this.sprite.play();
+      }
+      if (vectorX > 0 && this.direction !== "RIGHT") {
+        this.direction = "RIGHT";
+        this.sprite.textures = this.sheet.animations["right"];
+        this.sprite.play();
+      }
+    } else {
+      if (vectorY < 0 && this.direction !== "UP") {
+        this.direction = "UP";
+        this.sprite.textures = this.sheet.animations["up"];
+        this.sprite.play();
+      }
+
+      if (vectorY > 0 && this.direction !== "DOWN") {
+        this.direction = "DOWN";
+        this.sprite.textures = this.sheet.animations["down"];
+        this.sprite.play();
+      }
+    }
+  };
+
   dies() {
     this.isDead = true;
     this.sprite.textures = this.sheet.animations.death;
@@ -96,6 +122,7 @@ export default class Villain extends Character {
       const vectorX = x - this.sprite.x;
       const vectorY = y - this.sprite.y;
       const distance = Math.sqrt(Math.pow(vectorX, 2) + Math.pow(vectorY, 2));
+      this.manageDirection(vectorX, vectorY);
       this.sprite.x += (vectorX / distance) * this.speed;
       this.sprite.y += (vectorY / distance) * this.speed;
       this.sprite.zIndex = this.sprite.y;
